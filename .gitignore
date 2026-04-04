@@ -1,0 +1,20 @@
+# Dependencies
+node_modules/
+
+# Environment — never commit secrets
+.env
+.env.local
+.env.production
+
+# SQLite local database
+*.db
+*.db-shm
+*.db-wal
+
+# Logs
+*.log
+npm-debug.log*
+
+# OS
+.DS_Store
+Thumbs.db

@@ -111,7 +111,7 @@ function toCamel(obj) {
 // ── Express ───────────────────────────────────────────────────────────────────
 const app = express();
 app.use(express.json({ limit: '2mb' }));
-app.use(express.static(path.join(__dirname, '..', 'public')));
+app.use(express.static(path.join(__dirname, '..', 'frontend')));
 
 function auth(req, res, next) {
   const h = req.headers.authorization;
@@ -347,7 +347,7 @@ app.put('/api/targets', auth, (req, res) => {
 
 // ── Catch-all ─────────────────────────────────────────────────────────────────
 app.get('*', (req, res) =>
-  res.sendFile(path.join(__dirname, '..', 'public', 'index.html'))
+  res.sendFile(path.join(__dirname, '..', 'frontend', 'index.html'))
 );
 
 const PORT = process.env.PORT || 3000;

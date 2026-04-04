@@ -47,9 +47,9 @@ app.use('/api/payments',  authMiddleware, require('./routes/payments'));
 app.use('/api/targets',   authMiddleware, require('./routes/targets'));
 
 // ── Serve frontend ──
-app.use(express.static(path.join(__dirname, '..', 'public')));
+app.use(express.static(path.join(__dirname, '..', 'frontend')));
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '..', 'public', 'index.html'));
+  res.sendFile(path.join(__dirname, '..', 'frontend', 'index.html'));
 });
 
 // ── Error handler ──
