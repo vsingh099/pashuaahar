@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: pashufeed-pro
+    runtime: node
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: SUPABASE_URL
+        sync: false          # Set manually in Render dashboard
+      - key: SUPABASE_SERVICE_ROLE_KEY
+        sync: false          # Set manually in Render dashboard
+      - key: CLIENT_ORIGIN
+        sync: false          # Set to your frontend URL, or * to allow all

@@ -2,12 +2,15 @@
   "name": "pashufeed-pro",
   "version": "1.0.0",
   "description": "PashuFeed Pro — Cattle Feed Shop Manager",
-  "main": "server/index.js",
+  "main": "backend/index.js",
+  "engines": {
+    "node": ">=18.0.0"
+  },
   "scripts": {
-    "start": "node server/index.js",
-    "dev": "nodemon server/index.js",
-    "local": "node server/local.js",
-    "local:dev": "nodemon server/local.js"
+    "start": "node backend/index.js",
+    "dev": "nodemon backend/index.js",
+    "local": "node backend/local.js",
+    "local:dev": "nodemon backend/local.js"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.45.0",

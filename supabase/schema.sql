@@ -9,12 +9,14 @@ CREATE EXTENSION IF NOT EXISTS "pgcrypto";
 -- RATES / PRODUCTS
 -- ─────────────────────────────────────────
 CREATE TABLE rates (
-  id            TEXT        PRIMARY KEY DEFAULT gen_random_uuid()::text,
-  user_id       UUID        NOT NULL REFERENCES auth.users(id) ON DELETE CASCADE,
-  name          TEXT        NOT NULL,
-  pack_size     NUMERIC     NOT NULL,
-  price_per_bag NUMERIC     NOT NULL DEFAULT 0,
-  created_at    TIMESTAMPTZ NOT NULL DEFAULT now()
+  id             TEXT        PRIMARY KEY DEFAULT gen_random_uuid()::text,
+  user_id        UUID        NOT NULL REFERENCES auth.users(id) ON DELETE CASCADE,
+  name           TEXT        NOT NULL,
+  pack_size      NUMERIC     NOT NULL,
+  price_per_bag  NUMERIC     NOT NULL DEFAULT 0,
+  retailer_price NUMERIC     NOT NULL DEFAULT 0,
+  dealer_price   NUMERIC     NOT NULL DEFAULT 0,
+  created_at     TIMESTAMPTZ NOT NULL DEFAULT now()
 );
 ALTER TABLE rates ENABLE ROW LEVEL SECURITY;
 CREATE POLICY "owner_rates" ON rates
