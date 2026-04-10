@@ -202,9 +202,9 @@ app.get('/api/public/rates', (req, res) => {
 
 // ── Public: submit order ──────────────────────────────────────────────────────
 app.post('/api/public/order', async (req, res) => {
-  const { name, phone, address, product, quantity, note } = req.body;
-  if (!name || !phone || !product || !quantity)
-    return res.status(400).json({ error: 'name, phone, product and quantity are required' });
+  const { name, phone, address, items, note } = req.body;
+  if (!name || !phone || !Array.isArray(items) || !items.length)
+    return res.status(400).json({ error: 'name, phone, and at least one item are required' });
 
   const ownerEmails = (process.env.OWNER_EMAIL || 'vsmita099@gmail.com,viveksinghjpm6857@gmail.com')
     .split(',').map(e => e.trim()).filter(Boolean);
@@ -212,6 +212,17 @@ app.post('/api/public/order', async (req, res) => {
   const orderTime = new Date().toLocaleString('en-IN', {
     timeZone: 'Asia/Kolkata', dateStyle: 'medium', timeStyle: 'short'
   });
+
+  const itemsHtml = items.map(it =>
+    `<tr style="border-bottom:1px solid #eee">
+      <td style="padding:8px 10px;color:#A86000;font-weight:700">${it.product}</td>
+      <td style="padding:8px 10px;text-align:center;font-weight:700">${it.quantity}</td>
+      <td style="padding:8px 10px;text-align:center;color:#888">bags</td>
+    </tr>`
+  ).join('');
+
+  const itemsText    = items.map(it => `  • ${it.product} × ${it.quantity} bags`).join('\n');
+  const summaryLine  = items.map(it => `${it.product} × ${it.quantity}`).join(', ');
 
   const html = `
     <div style="font-family:sans-serif;max-width:520px;margin:0 auto;border:1px solid #ddd;border-radius:8px;overflow:hidden">
@@ -224,10 +235,19 @@ app.post('/api/public/order', async (req, res) => {
           <tr style="border-bottom:1px solid #eee"><td style="padding:10px 8px;color:#888;width:120px">Customer</td><td style="padding:10px 8px;font-weight:700">${name}</td></tr>
           <tr style="border-bottom:1px solid #eee"><td style="padding:10px 8px;color:#888">Phone</td><td style="padding:10px 8px;font-weight:700"><a href="tel:${phone}">${phone}</a></td></tr>
           <tr style="border-bottom:1px solid #eee"><td style="padding:10px 8px;color:#888">Address</td><td style="padding:10px 8px">${address||'—'}</td></tr>
-          <tr style="border-bottom:1px solid #eee"><td style="padding:10px 8px;color:#888">Product</td><td style="padding:10px 8px;font-weight:700;color:#A86000">${product}</td></tr>
-          <tr style="border-bottom:1px solid #eee"><td style="padding:10px 8px;color:#888">Quantity</td><td style="padding:10px 8px;font-weight:700">${quantity} bags</td></tr>
-          ${note?`<tr><td style="padding:10px 8px;color:#888">Note</td><td style="padding:10px 8px">${note}</td></tr>`:''}
         </table>
+        <div style="margin-top:16px">
+          <div style="font-size:12px;font-weight:700;color:#888;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px">Order Items</div>
+          <table style="width:100%;border-collapse:collapse;font-size:14px;border:1px solid #eee;border-radius:6px;overflow:hidden">
+            <thead><tr style="background:#FDF2DC">
+              <th style="padding:8px 10px;text-align:left;font-size:12px;color:#9A5E0A">Product</th>
+              <th style="padding:8px 10px;text-align:center;font-size:12px;color:#9A5E0A">Qty</th>
+              <th style="padding:8px 10px;text-align:center;font-size:12px;color:#9A5E0A">Unit</th>
+            </tr></thead>
+            <tbody>${itemsHtml}</tbody>
+          </table>
+        </div>
+        ${note ? `<div style="margin-top:14px;padding:10px;background:#f9f9f9;border-radius:6px;font-size:13px;color:#555"><strong>Note:</strong> ${note}</div>` : ''}
       </div>
       <div style="background:#FDF2DC;padding:14px 20px;text-align:center;font-size:12px;color:#9A5E0A">
         Reply or WhatsApp <strong>7080006857</strong> to confirm delivery.
@@ -239,17 +259,16 @@ app.post('/api/public/order', async (req, res) => {
       await mailer.sendMail({
         from:    `"BADRI TRADERS Orders" <${process.env.SMTP_USER}>`,
         to:      ownerEmails.join(','),
-        subject: `New Order from ${name} — ${product} × ${quantity} bags`,
+        subject: `New Order from ${name} — ${summaryLine}`,
         html,
-        text: `New Order\n\nCustomer: ${name}\nPhone: ${phone}\nAddress: ${address||'—'}\nProduct: ${product}\nQuantity: ${quantity} bags\nNote: ${note||'—'}\nTime: ${orderTime}`
+        text: `New Order\n\nCustomer: ${name}\nPhone: ${phone}\nAddress: ${address||'—'}\nItems:\n${itemsText}\nNote: ${note||'—'}\nTime: ${orderTime}`
       });
       console.log(`Order email sent to ${ownerEmails.join(', ')}`);
     } catch (err) {
       console.warn('Email failed:', err.message);
     }
   } else {
-    // Print order to console so owner can see it during local testing
-    console.log(`\n📦 NEW ORDER\n  Customer: ${name} | Phone: ${phone}\n  Product: ${product} × ${quantity} bags\n  Address: ${address||'—'}\n  Note: ${note||'—'}\n`);
+    console.log(`\n📦 NEW ORDER\n  Customer: ${name} | Phone: ${phone}\n  Items:\n${itemsText}\n  Address: ${address||'—'}\n  Note: ${note||'—'}\n`);
   }
   res.json({ success: true, message: 'Order placed! We will contact you soon.' });
 });
