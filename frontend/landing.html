@@ -1,707 +1,945 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<meta name="description" content="BADRI TRADERS — Venkys Cattle Feed. Free Home Delivery. Order online.">
-<meta name="theme-color" content="#0D3D1A">
-<title>BADRI TRADERS — Venkys Cattle Feed</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800;900&family=Hind:wght@400;500;600;700&display=swap" rel="stylesheet">
-<style>
-*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
-:root{
-  --bg:#EBF2EC;--surf:#FFFFFF;--surf2:#E2EDE3;--surf3:#D4E4D5;
-  --bdr:#B8D4BA;--bdr2:#98BC9A;
-  --tx:#0A1E0C;--tx2:#1A4020;--tx3:#4A7850;--tx4:#82A884;
-  --acc:#1A6E38;--acc2:#115228;--accbg:#DFF2E4;
-  --grn:#16A34A;--grnbg:#F0FDF4;
-  --red:#DC2626;--redbg:#FEF2F2;
-  --blu:#2563EB;--blubg:#EFF6FF;
-  --ylw:#D97706;--ylwbg:#FFFBEB;
-  --amber:#D97706;--amber2:#B45309;
-  --r:14px;--r2:10px;
-  --F:'DM Sans',system-ui,sans-serif;
-  --FH:'Hind','DM Sans',system-ui,sans-serif;
-}
-html{scroll-behavior:smooth;}
-body{font-family:var(--F);color:var(--tx);background:#FFF;font-size:15px;line-height:1.5;overflow-x:hidden;}
-html[lang="hi"] body,html[lang="hi"] button,html[lang="hi"] input,html[lang="hi"] select,html[lang="hi"] textarea,html[lang="hi"] a{font-family:var(--FH);}
-a{color:inherit;text-decoration:none;}
-button{font-family:inherit;cursor:pointer;border:none;outline:none;}
-input,select,textarea{font-family:inherit;font-size:15px;outline:none;}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#1a5c2a">
+  <title>Badri Traders — Premium Cattle Feed</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    /* ── Reset & Variables ───────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --green:   #1a5c2a;
+      --green2:  #2e7d32;
+      --green3:  #43a047;
+      --gold:    #e8a020;
+      --gold2:   #f9c74f;
+      --dark:    #0d1a0f;
+      --bg:      #f1f8e9;
+      --bg2:     #e8f5e9;
+      --white:   #ffffff;
+      --text:    #1a1a1a;
+      --text2:   #555;
+      --text3:   #888;
+      --border:  #dde8d5;
+      --shadow:  0 2px 12px rgba(0,0,0,0.08);
+      --shadow2: 0 8px 28px rgba(0,0,0,0.13);
+      --r:       12px;
+      --hh:      62px;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg); color: var(--text); min-height: 100vh;
+    }
 
-/* ── NAV ── */
-.nav{position:sticky;top:0;z-index:100;background:linear-gradient(135deg,#0A2E14 0%,#1A6035 55%,#22804A 100%);
-  padding:0 20px;height:60px;
-  display:flex;align-items:center;justify-content:space-between;}
-.nav-brand{display:flex;align-items:center;gap:10px;}
-.nav-brand .ico{font-size:28px;line-height:1;}
-.nav-brand .name{font-size:18px;font-weight:900;color:#FFFFFF;letter-spacing:-.3px;}
-.nav-brand .tag{font-size:10px;color:rgba(255,255,255,.65);font-weight:600;letter-spacing:.6px;text-transform:uppercase;}
-.nav-links{display:flex;align-items:center;gap:8px;}
-.nav-link{font-size:13px;font-weight:700;color:rgba(255,255,255,.8);padding:6px 12px;border-radius:99px;transition:all .15s;}
-.nav-link:hover{background:rgba(255,255,255,.15);color:#fff;}
-.nav-login{background:linear-gradient(135deg,var(--amber),var(--amber2));color:#fff;border-radius:99px;
-  padding:7px 18px;font-size:13px;font-weight:700;transition:all .15s;}
-.nav-login:hover{opacity:.9;transform:scale(.97);}
-.lang-btn{background:rgba(255,255,255,.15);color:#fff;border-radius:99px;
-  padding:6px 14px;font-size:12px;font-weight:700;border:1px solid rgba(255,255,255,.25);
-  transition:all .15s;cursor:pointer;letter-spacing:.3px;}
-.lang-btn:hover{background:rgba(255,255,255,.25);}
+    /* ── Header ─────────────────────────────────────────── */
+    .header {
+      position: sticky; top: 0; z-index: 200;
+      height: var(--hh);
+      background: var(--green);
+      display: flex; align-items: center; gap: 12px;
+      padding: 0 20px;
+      box-shadow: 0 2px 14px rgba(0,0,0,0.28);
+    }
+    .logo {
+      height: 44px; width: 44px; border-radius: 50%;
+      object-fit: cover; border: 2px solid rgba(255,255,255,0.3);
+      flex-shrink: 0;
+    }
+    .logo-ph {
+      height: 44px; width: 44px; border-radius: 50%;
+      background: var(--gold); color: var(--dark);
+      display: none; align-items: center; justify-content: center;
+      font-size: 15px; font-weight: 900; flex-shrink: 0;
+      border: 2px solid rgba(255,255,255,0.3);
+    }
+    .brand { flex: 1; min-width: 0; }
+    .brand-name {
+      font-size: 17px; font-weight: 800; color: white;
+      letter-spacing: 0.4px; line-height: 1.1;
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    }
+    .brand-sub { font-size: 11px; color: rgba(255,255,255,0.7); margin-top: 1px; }
+    .call-btn {
+      background: var(--gold); color: var(--dark);
+      border: none; border-radius: 8px;
+      padding: 8px 14px; font-size: 12px; font-weight: 800;
+      text-decoration: none; cursor: pointer; white-space: nowrap;
+      transition: background .2s, transform .1s; flex-shrink: 0;
+    }
+    .call-btn:hover { background: var(--gold2); transform: scale(1.04); }
 
-/* ── HERO ── */
-.hero{background:linear-gradient(160deg,#EBF2EC 0%,#DFF2E4 60%,#F0FDF4 100%);
-  padding:70px 20px 60px;text-align:center;position:relative;overflow:hidden;}
-.hero::before{content:'';position:absolute;top:-80px;right:-80px;width:320px;height:320px;
-  background:radial-gradient(circle,rgba(26,110,56,.12),transparent 70%);border-radius:50%;}
-.hero::after{content:'';position:absolute;bottom:-60px;left:-60px;width:240px;height:240px;
-  background:radial-gradient(circle,rgba(17,82,40,.08),transparent 70%);border-radius:50%;}
-.hero-tag{display:inline-block;background:var(--accbg);color:var(--acc);border-radius:99px;
-  padding:5px 16px;font-size:12px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;margin-bottom:16px;}
-.hero h1{font-size:clamp(32px,8vw,58px);font-weight:900;color:var(--tx);letter-spacing:-1px;line-height:1.1;margin-bottom:10px;}
-.hero h1 span{color:var(--acc);}
-.hero .sub{font-size:clamp(15px,3vw,19px);color:var(--tx3);margin-bottom:30px;font-weight:500;}
-.hero-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
-.btn-hero{padding:14px 32px;border-radius:99px;font-size:16px;font-weight:800;transition:all .16s;}
-.btn-hero.primary{background:linear-gradient(135deg,var(--amber),var(--amber2));color:#fff;
-  box-shadow:0 4px 20px rgba(217,119,6,.35);}
-.btn-hero.primary:hover{transform:translateY(-2px);box-shadow:0 6px 28px rgba(217,119,6,.45);}
-.btn-hero.secondary{background:var(--surf);color:var(--acc);border:2px solid var(--acc);font-weight:700;}
-.btn-hero.secondary:hover{background:var(--accbg);}
-.hero-badges{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-top:28px;}
-.hbadge{display:flex;align-items:center;gap:6px;font-size:13px;color:var(--tx3);font-weight:600;}
+    /* ── Hero ────────────────────────────────────────────── */
+    .hero {
+      position: relative; height: 300px;
+      background: url('/images/cattle-farm.jpg') center 40% / cover no-repeat;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(135deg,rgba(10,40,15,.84) 0%,rgba(10,40,15,.52) 60%,rgba(10,40,15,.38) 100%);
+    }
+    .hero-body {
+      position: relative; z-index: 1; height: 100%;
+      display: flex; flex-direction: column;
+      justify-content: center; align-items: center;
+      text-align: center; padding: 20px 24px; color: white;
+    }
+    .hero-badge {
+      background: var(--gold); color: var(--dark);
+      font-size: 11px; font-weight: 800; letter-spacing: 1.5px;
+      padding: 4px 14px; border-radius: 20px; text-transform: uppercase;
+      margin-bottom: 12px; animation: fadeInDown .7s ease both;
+    }
+    .hero-title {
+      font-size: 34px; font-weight: 900; line-height: 1.1;
+      text-shadow: 0 2px 12px rgba(0,0,0,.5);
+      animation: fadeInDown .7s .15s ease both;
+    }
+    .hero-title em { color: var(--gold2); font-style: normal; }
+    .hero-sub {
+      font-size: 14px; opacity: .88; margin-top: 8px;
+      animation: fadeInDown .7s .3s ease both;
+    }
+    .hero-stats {
+      display: flex; gap: 28px; margin-top: 22px;
+      animation: fadeInUp .7s .45s ease both;
+    }
+    .stat { text-align: center; }
+    .stat-n { font-size: 22px; font-weight: 900; color: var(--gold2); line-height: 1; }
+    .stat-l { font-size: 10px; opacity: .75; margin-top: 2px; text-transform: uppercase; letter-spacing: .5px; }
 
-/* ── SECTION COMMON ── */
-section{padding:64px 20px;}
-.container{max-width:900px;margin:0 auto;}
-.sec-label{font-size:11px;font-weight:700;color:var(--acc);letter-spacing:1px;text-transform:uppercase;margin-bottom:8px;}
-.sec-title{font-size:clamp(24px,5vw,36px);font-weight:900;color:var(--tx);letter-spacing:-.5px;margin-bottom:8px;}
-.sec-sub{font-size:15px;color:var(--tx3);margin-bottom:36px;}
+    /* ── Main layout ─────────────────────────────────────── */
+    .main { display: grid; grid-template-columns: 1fr 340px; }
 
-/* ── PRODUCTS ── */
-#products{background:var(--bg);}
-.prod-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px;}
-.prod-card{background:var(--surf);border:1px solid var(--bdr);border-radius:var(--r);
-  padding:16px;transition:all .18s;position:relative;}
-.prod-card:hover{transform:translateY(-2px);box-shadow:0 4px 20px rgba(26,110,56,.14);border-color:var(--acc);}
-.prod-name{font-size:14px;font-weight:800;color:var(--tx);margin-bottom:5px;line-height:1.3;}
-.prod-pack{font-size:11px;color:var(--tx3);font-weight:600;text-transform:uppercase;letter-spacing:.4px;margin-bottom:10px;}
-.prod-price{font-size:20px;font-weight:900;color:var(--acc);}
-.prod-price span{font-size:11px;color:var(--tx3);font-weight:600;margin-left:2px;}
-.prod-order-btn{width:100%;margin-top:12px;padding:8px;border-radius:8px;
-  background:linear-gradient(135deg,var(--amber),var(--amber2));
-  color:#fff;font-size:12px;font-weight:700;transition:all .14s;}
-.prod-order-btn:hover{opacity:.9;}
-.prod-skeleton{background:linear-gradient(90deg,#D4E4D5 25%,#E2EDE3 50%,#D4E4D5 75%);
-  background-size:200% 100%;animation:shimmer 1.4s infinite;border-radius:var(--r);height:130px;}
-@keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
-.prod-empty{text-align:center;padding:40px;color:var(--tx3);grid-column:1/-1;}
+    /* ── Products Panel ──────────────────────────────────── */
+    .products-panel { padding: 18px 16px; }
+    .panel-hd { font-size: 16px; font-weight: 800; color: var(--green); margin-bottom: 12px; }
 
-/* ── ORDER FORM ── */
-#order{background:linear-gradient(160deg,#EBF2EC,#FFF);}
-.order-card{background:var(--surf);border-radius:var(--r);border:1px solid var(--bdr);
-  padding:32px;box-shadow:0 4px 32px rgba(26,110,56,.10);}
-.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
-@media(max-width:540px){.form-grid{grid-template-columns:1fr;}}
-.fg{display:flex;flex-direction:column;gap:5px;}
-.fg.full{grid-column:1/-1;}
-.fg label{font-size:12px;font-weight:700;color:var(--tx2);text-transform:uppercase;letter-spacing:.5px;}
-.fg input,.fg select,.fg textarea{padding:11px 14px;border-radius:var(--r2);border:1.5px solid var(--bdr);
-  background:var(--bg);color:var(--tx);transition:border .15s;-webkit-appearance:none;appearance:none;}
-.fg input:focus,.fg select:focus,.fg textarea:focus{border-color:var(--acc);background:#fff;
-  box-shadow:0 0 0 3px rgba(26,110,56,.10);}
-.fg select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%234A7850' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");
-  background-repeat:no-repeat;background-position:right 12px center;padding-right:32px;}
-.fg textarea{resize:vertical;min-height:80px;}
-.submit-btn{width:100%;padding:15px;border-radius:var(--r2);
-  background:linear-gradient(135deg,var(--amber),var(--amber2));
-  color:#fff;font-size:16px;font-weight:800;margin-top:6px;transition:all .16s;
-  box-shadow:0 3px 16px rgba(217,119,6,.30);}
-.submit-btn:hover{transform:translateY(-1px);box-shadow:0 5px 24px rgba(217,119,6,.40);}
-.submit-btn:disabled{opacity:.6;transform:none;cursor:default;}
-#order-msg{border-radius:var(--r2);padding:12px 16px;margin-top:14px;font-size:14px;font-weight:600;display:none;}
-#order-msg.ok{background:var(--grnbg);color:var(--grn);}
-#order-msg.err{background:var(--redbg);color:var(--red);}
+    .cat-tabs { display: flex; gap: 7px; flex-wrap: wrap; margin-bottom: 12px; }
+    .ctab {
+      padding: 6px 14px; border-radius: 20px;
+      border: 1.5px solid var(--border); background: white; color: var(--text2);
+      font-size: 12px; font-weight: 600; cursor: pointer;
+      transition: all .2s; white-space: nowrap;
+    }
+    .ctab:hover { border-color: var(--green3); color: var(--green2); }
+    .ctab.on { background: var(--green2); color: white; border-color: var(--green2); }
 
-/* ── WEBDEV ── */
-#webdev{background:var(--surf2);}
-.pkg-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:16px;}
-.pkg-card{background:var(--surf);border:1.5px solid var(--bdr);border-radius:var(--r);
-  padding:22px 18px;transition:all .18s;display:flex;flex-direction:column;}
-.pkg-card:hover{transform:translateY(-2px);box-shadow:0 6px 24px rgba(26,110,56,.12);border-color:var(--acc);}
-.pkg-card.featured{border-color:var(--amber);box-shadow:0 2px 16px rgba(217,119,6,.14);}
-.pkg-badge{display:inline-block;padding:3px 10px;border-radius:99px;font-size:10px;font-weight:700;
-  text-transform:uppercase;letter-spacing:.5px;margin-bottom:12px;}
-.pkg-badge.popular{background:var(--ylwbg);color:var(--ylw);}
-.pkg-badge.std{background:var(--blubg);color:var(--blu);}
-.pkg-badge.biz{background:var(--accbg);color:var(--acc);}
-.pkg-badge.cst{background:#F0ECF8;color:#5030A0;}
-.pkg-name{font-size:20px;font-weight:900;color:var(--tx);margin-bottom:6px;}
-.pkg-tagline{font-size:12px;color:var(--tx3);margin-bottom:14px;font-weight:500;}
-.pkg-features{list-style:none;flex:1;margin-bottom:16px;}
-.pkg-features li{font-size:13px;color:var(--tx2);padding:4px 0;display:flex;align-items:flex-start;gap:7px;}
-.pkg-features li::before{content:'✓';color:var(--grn);font-weight:800;flex-shrink:0;margin-top:1px;}
-.pkg-cta{display:block;text-align:center;padding:10px;border-radius:var(--r2);font-size:14px;font-weight:700;
-  background:linear-gradient(135deg,var(--amber),var(--amber2));color:#fff;transition:all .15s;}
-.pkg-cta:hover{opacity:.9;transform:scale(.98);}
+    .srch-wrap { position: relative; margin-bottom: 14px; }
+    .srch-wrap::before {
+      content: '🔍'; position: absolute; left: 11px; top: 50%;
+      transform: translateY(-50%); font-size: 13px; pointer-events: none;
+    }
+    .srch {
+      width: 100%; padding: 10px 12px 10px 34px;
+      border: 1.5px solid var(--border); border-radius: 10px;
+      font-size: 13px; background: white; outline: none;
+      transition: border-color .2s, box-shadow .2s;
+    }
+    .srch:focus { border-color: var(--green2); box-shadow: 0 0 0 3px rgba(46,125,50,.1); }
 
-/* ── FOOTER ── */
-footer{background:linear-gradient(135deg,#0A2E14 0%,#0D3D1A 100%);color:rgba(255,255,255,.8);padding:44px 20px 28px;}
-.foot-inner{max-width:900px;margin:0 auto;}
-.foot-brand{font-size:24px;font-weight:900;color:#fff;margin-bottom:4px;}
-.foot-sub{font-size:13px;opacity:.6;margin-bottom:6px;}
-.foot-gstin{font-size:11px;color:rgba(255,255,255,.4);margin-bottom:6px;letter-spacing:.3px;}
-.foot-addr{font-size:12px;color:rgba(255,255,255,.5);margin-bottom:24px;line-height:1.6;}
-.foot-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:24px;margin-bottom:28px;}
-.foot-col h4{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;
-  color:rgba(255,255,255,.45);margin-bottom:12px;}
-.foot-col a,.foot-col p{display:block;font-size:14px;color:rgba(255,255,255,.75);margin-bottom:7px;transition:color .14s;}
-.foot-col a:hover{color:#fff;}
-.foot-bottom{border-top:1px solid rgba(255,255,255,.1);padding-top:18px;
-  display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;}
-.foot-copy{font-size:12px;opacity:.45;}
+    .prod-meta { font-size: 12px; color: var(--text3); margin-bottom: 10px; }
 
-/* ── TOAST ── */
-.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(20px);z-index:500;
-  background:var(--tx);color:#fff;border-radius:10px;padding:10px 20px;font-size:14px;font-weight:700;
-  opacity:0;pointer-events:none;transition:all .25s;white-space:nowrap;box-shadow:0 4px 20px rgba(0,0,0,.3);}
-.toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+    /* ── Product Grid ────────────────────────────────────── */
+    .pgrid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(155px, 1fr));
+      gap: 13px;
+    }
+    .pcard {
+      background: white; border-radius: var(--r);
+      box-shadow: var(--shadow); overflow: hidden;
+      transition: transform .22s, box-shadow .22s;
+      animation: fadeInUp .45s ease both;
+      border: 1.5px solid transparent;
+    }
+    .pcard:hover { transform: translateY(-5px); box-shadow: var(--shadow2); border-color: var(--border); }
+    .pcard.incart { border-color: var(--green3); }
 
-/* Mobile tweaks */
-@media(max-width:600px){
-  .nav-links .nav-link{display:none;}
-  .hero{padding:50px 16px 44px;}
-  section{padding:48px 16px;}
-  .order-card{padding:20px 16px;}
-  .pkg-grid{grid-template-columns:1fr 1fr;}
-  .foot-grid{grid-template-columns:1fr 1fr;}
-}
-@media(max-width:400px){
-  .pkg-grid{grid-template-columns:1fr;}
-}
-</style>
+    .pimg-wrap { position: relative; padding-top: 68%; overflow: hidden; background: #eef3ee; }
+    .pph {
+      position: absolute; inset: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 26px; font-weight: 900; color: rgba(255,255,255,.92); letter-spacing: 1px;
+    }
+    .pimg {
+      position: absolute; inset: 0; width: 100%; height: 100%;
+      object-fit: cover; transition: transform .3s;
+    }
+    .pcard:hover .pimg { transform: scale(1.06); }
+    .pcatbdg {
+      position: absolute; top: 7px; left: 7px;
+      background: rgba(0,0,0,.45); color: white;
+      font-size: 9px; font-weight: 700; letter-spacing: .5px;
+      padding: 3px 7px; border-radius: 10px; text-transform: uppercase;
+    }
+
+    .pinfo { padding: 10px 10px 11px; }
+    .pname {
+      font-size: 12.5px; font-weight: 700; line-height: 1.3; margin-bottom: 3px;
+      display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+    }
+    .ppack { font-size: 11px; color: var(--text3); margin-bottom: 6px; }
+    .pprice { font-size: 16px; font-weight: 900; color: var(--green2); margin-bottom: 8px; line-height: 1; }
+    .pprice span { font-size: 11px; font-weight: 500; color: var(--text3); }
+    .addbtn {
+      width: 100%; padding: 8px 6px; border: none; border-radius: 8px;
+      font-size: 12px; font-weight: 700; cursor: pointer;
+      background: var(--green2); color: white;
+      transition: background .2s, transform .1s;
+    }
+    .addbtn:hover { background: var(--green); }
+    .addbtn:active { transform: scale(.97); }
+    .addbtn.incart { background: var(--gold); color: var(--dark); }
+
+    /* ── Order Panel ─────────────────────────────────────── */
+    .opanel {
+      position: sticky; top: var(--hh);
+      height: calc(100vh - var(--hh)); overflow-y: auto;
+      background: white; border-left: 2px solid var(--bg2);
+      padding: 20px 18px;
+      display: flex; flex-direction: column; gap: 14px;
+    }
+    .opanel::-webkit-scrollbar { width: 4px; }
+    .opanel::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+
+    .o-hd {
+      font-size: 17px; font-weight: 800; color: var(--green);
+      display: flex; align-items: center; gap: 7px; flex-shrink: 0;
+    }
+    .cbadge {
+      background: var(--green2); color: white;
+      font-size: 11px; font-weight: 800;
+      padding: 2px 7px; border-radius: 10px; min-width: 22px; text-align: center;
+      display: none;
+    }
+
+    .fg { display: flex; flex-direction: column; gap: 5px; }
+    .fg label { font-size: 11px; font-weight: 700; color: var(--text2); text-transform: uppercase; letter-spacing: .4px; }
+    .fg input {
+      padding: 10px 12px; border: 1.5px solid var(--border); border-radius: 8px;
+      font-size: 14px; outline: none; background: var(--bg);
+      transition: border-color .2s, box-shadow .2s;
+    }
+    .fg input:focus { border-color: var(--green2); background: white; box-shadow: 0 0 0 3px rgba(46,125,50,.1); }
+
+    .divider { height: 1px; background: var(--bg2); flex-shrink: 0; }
+    .items-lbl { font-size: 11px; font-weight: 700; color: var(--text2); text-transform: uppercase; letter-spacing: .4px; }
+
+    #order-items { flex: 1; min-height: 80px; }
+    .empty-oi {
+      text-align: center; padding: 28px 10px;
+      color: var(--text3); font-size: 13px; line-height: 1.6;
+    }
+    .empty-oi .ei { font-size: 36px; margin-bottom: 8px; }
+
+    .oitem {
+      display: flex; align-items: center; gap: 8px;
+      padding: 9px 0; border-bottom: 1px solid var(--bg2);
+      animation: slideRight .25s ease both;
+    }
+    .oclr { width: 7px; height: 36px; border-radius: 4px; flex-shrink: 0; }
+    .oinfo { flex: 1; min-width: 0; }
+    .oname { font-size: 12px; font-weight: 700; line-height: 1.2; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .ometa { font-size: 10px; color: var(--text3); margin-top: 2px; }
+    .oqty { display: flex; align-items: center; gap: 4px; flex-shrink: 0; }
+    .qbtn {
+      width: 26px; height: 26px; border-radius: 7px;
+      border: 1.5px solid var(--border); background: white;
+      font-size: 15px; cursor: pointer; font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+      transition: all .15s; line-height: 1;
+    }
+    .qbtn:hover { background: var(--green2); color: white; border-color: var(--green2); }
+    .qval { width: 26px; text-align: center; font-size: 13px; font-weight: 800; }
+    .oamt { font-size: 12px; font-weight: 800; color: var(--green2); min-width: 52px; text-align: right; flex-shrink: 0; }
+    .odel {
+      width: 22px; height: 22px; border-radius: 6px;
+      background: #fdecea; border: none; color: #c62828;
+      font-size: 12px; cursor: pointer; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      transition: background .15s;
+    }
+    .odel:hover { background: #ef9a9a; }
+
+    .total-box {
+      background: var(--bg); border-radius: 10px; padding: 12px 14px;
+      display: none; justify-content: space-between; align-items: center;
+      border: 1.5px solid var(--border); flex-shrink: 0;
+    }
+    .tlbl { font-size: 13px; font-weight: 700; color: var(--text2); }
+    .tamt { font-size: 22px; font-weight: 900; color: var(--green); }
+
+    .order-btn {
+      background: var(--green2); color: white; border: none; border-radius: 11px;
+      padding: 14px; font-size: 15px; font-weight: 700;
+      cursor: pointer; width: 100%; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center; gap: 9px;
+      transition: background .2s, transform .15s; letter-spacing: .2px;
+    }
+    .order-btn:hover { background: var(--green); transform: scale(1.02); }
+    .order-btn:active { transform: scale(.98); }
+    .order-btn:disabled { background: #aaa; cursor: not-allowed; transform: none; }
+
+    .or-divider {
+      display: flex; align-items: center; gap: 10px; flex-shrink: 0;
+      font-size: 11px; color: var(--text3); font-weight: 600;
+    }
+    .or-divider::before, .or-divider::after {
+      content: ''; flex: 1; height: 1px; background: var(--border);
+    }
+
+    .wa-btn {
+      background: #25d366; color: white; border: none; border-radius: 11px;
+      padding: 12px; font-size: 13px; font-weight: 700;
+      cursor: pointer; width: 100%; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+      transition: background .2s, transform .15s; letter-spacing: .2px;
+    }
+    .wa-btn:hover { background: #128c7e; transform: scale(1.02); }
+    .wa-btn:active { transform: scale(.98); }
+
+    .order-success {
+      background: #e8f5e9; border: 1.5px solid var(--green3);
+      border-radius: 11px; padding: 18px; text-align: center;
+      display: none; flex-shrink: 0; animation: fadeInUp .4s ease both;
+    }
+    .order-success .si { font-size: 32px; margin-bottom: 6px; }
+    .order-success h4 { font-size: 15px; font-weight: 700; color: var(--green); margin-bottom: 4px; }
+    .order-success p  { font-size: 12px; color: var(--text2); line-height: 1.5; }
+
+    /* ── Digital Services ────────────────────────────────── */
+    .ds-section {
+      background: #f8faf8; padding: 56px 20px 60px;
+      border-top: 1px solid var(--border);
+    }
+    .ds-wrap { max-width: 1100px; margin: 0 auto; }
+    .ds-tag {
+      font-size: 11px; font-weight: 700; letter-spacing: 2px;
+      text-transform: uppercase; color: var(--green2);
+      margin-bottom: 10px;
+    }
+    .ds-title {
+      font-size: 34px; font-weight: 800; color: var(--dark);
+      line-height: 1.15; margin-bottom: 10px;
+    }
+    .ds-title span { color: var(--green2); }
+    .ds-sub {
+      font-size: 15px; color: var(--text2); margin-bottom: 36px;
+      max-width: 520px; line-height: 1.6;
+    }
+
+    .plans {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px; align-items: start;
+    }
+    .plan {
+      background: white; border-radius: 14px;
+      padding: 24px 20px 22px;
+      box-shadow: 0 2px 16px rgba(0,0,0,.07);
+      border: 2px solid transparent;
+      position: relative; transition: transform .2s, box-shadow .2s;
+      animation: fadeInUp .5s ease both;
+    }
+    .plan:hover { transform: translateY(-4px); box-shadow: 0 10px 32px rgba(0,0,0,.11); }
+    .plan.popular {
+      border-color: var(--gold);
+      box-shadow: 0 4px 24px rgba(232,160,32,.2);
+    }
+    .plan-pop-label {
+      position: absolute; top: -13px; left: 50%; transform: translateX(-50%);
+      background: var(--gold); color: var(--dark);
+      font-size: 11px; font-weight: 800; padding: 3px 14px;
+      border-radius: 20px; white-space: nowrap;
+    }
+
+    .plan-badge {
+      font-size: 10px; font-weight: 700; letter-spacing: 1.2px;
+      text-transform: uppercase; padding: 3px 10px; border-radius: 20px;
+      display: inline-block; margin-bottom: 12px;
+    }
+    .starter   { background: #e8f5e9; color: #2e7d32; }
+    .standard  { background: #fff8e1; color: #e65100; }
+    .business  { background: #e0f2f1; color: #00695c; }
+    .enterprise{ background: #ede7f6; color: #4527a0; }
+
+    .plan-name {
+      font-size: 22px; font-weight: 800; color: var(--dark);
+      margin-bottom: 5px; line-height: 1;
+    }
+    .plan-desc {
+      font-size: 12px; color: var(--text3); margin-bottom: 16px;
+      line-height: 1.4; min-height: 34px;
+    }
+    .plan-feats {
+      list-style: none; margin-bottom: 20px;
+      display: flex; flex-direction: column; gap: 7px;
+    }
+    .plan-feats li {
+      font-size: 12.5px; color: var(--text2);
+      display: flex; align-items: flex-start; gap: 7px; line-height: 1.3;
+    }
+    .plan-feats li::before {
+      content: '✓'; color: var(--green2); font-weight: 800;
+      font-size: 13px; flex-shrink: 0; margin-top: 0px;
+    }
+    .plan-btn {
+      display: block; text-align: center;
+      background: var(--gold); color: var(--dark);
+      text-decoration: none; font-size: 13px; font-weight: 700;
+      padding: 11px; border-radius: 9px;
+      transition: background .2s, transform .1s;
+    }
+    .plan-btn:hover { background: #d4900f; transform: scale(1.02); }
+    .popular-btn { background: var(--gold); }
+    .enterprise-btn { background: #4527a0; color: white; }
+    .enterprise-btn:hover { background: #311b92; }
+
+    /* ── Footer ──────────────────────────────────────────── */
+    .footer {
+      background: var(--dark); color: rgba(255,255,255,.75);
+      padding: 28px 24px; font-size: 12.5px;
+    }
+    .footer-inner {
+      max-width: 1100px; margin: 0 auto;
+      display: flex; justify-content: space-between; align-items: flex-start;
+      gap: 20px; flex-wrap: wrap;
+    }
+    .footer-brand { display: flex; align-items: center; gap: 12px; }
+    .footer-logo { height: 44px; width: 44px; border-radius: 50%; object-fit: cover; }
+    .footer-name { font-size: 16px; font-weight: 800; color: white; }
+    .footer-tag  { font-size: 12px; color: var(--gold2); margin-top: 2px; }
+    .footer-info { text-align: right; line-height: 2; color: rgba(255,255,255,.6); }
+
+    @media (max-width: 900px) {
+      .plans { grid-template-columns: repeat(2, 1fr); }
+      .ds-title { font-size: 26px; }
+    }
+    @media (max-width: 540px) {
+      .plans { grid-template-columns: 1fr; }
+      .footer-inner { flex-direction: column; }
+      .footer-info { text-align: left; }
+    }
+
+    /* ── Animations ──────────────────────────────────────── */
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-18px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(18px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes slideRight {
+      from { opacity: 0; transform: translateX(12px); }
+      to   { opacity: 1; transform: translateX(0); }
+    }
+    @keyframes waPulse {
+      0%,100% { box-shadow: 0 0 0 0 rgba(37,211,102,.45); }
+      50%      { box-shadow: 0 0 0 10px rgba(37,211,102,0); }
+    }
+
+    /* ── Skeleton loader ─────────────────────────────────── */
+    .skel {
+      background: linear-gradient(90deg,#eee 25%,#f5f5f5 50%,#eee 75%);
+      background-size: 200% 100%;
+      animation: shimmer 1.4s infinite;
+      border-radius: var(--r); height: 230px;
+    }
+    @keyframes shimmer {
+      0%   { background-position: 200% 0; }
+      100% { background-position: -200% 0; }
+    }
+
+    /* ── Mobile ──────────────────────────────────────────── */
+    @media (max-width: 800px) {
+      .main { grid-template-columns: 1fr; }
+      .hero { height: 240px; }
+      .hero-title { font-size: 26px; }
+      .hero-stats { gap: 18px; }
+      .stat-n { font-size: 18px; }
+      .opanel { position: static; height: auto; border-left: none; border-top: 3px solid var(--green); }
+      .pgrid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 10px; }
+      .header { padding: 0 12px; }
+      .brand-name { font-size: 15px; }
+    }
+  </style>
 </head>
 <body>
 
-<!-- ── NAV ── -->
-<nav class="nav">
-  <div class="nav-brand">
-    <span class="ico">🌾</span>
-    <div>
-      <div class="name">BADRI TRADERS</div>
-      <div class="tag" data-t="nav_tag">Venkys Cattle Feed</div>
-    </div>
+<!-- ── Header ── -->
+<header class="header">
+  <img class="logo" src="/images/logo.png" alt="Badri Traders"
+       onerror="this.style.display='none';document.getElementById('lph').style.display='flex'">
+  <div class="logo-ph" id="lph">BT</div>
+  <div class="brand">
+    <div class="brand-name">BADRI TRADERS</div>
+    <div class="brand-sub">Premium Cattle Feed</div>
   </div>
-  <div class="nav-links">
-    <a class="nav-link" href="#products" data-t="nav_products">Products</a>
-    <a class="nav-link" href="#order" data-t="nav_order">Order</a>
-    <a class="nav-link" href="#webdev" data-t="nav_web">Web Services</a>
-    <button class="lang-btn" id="lang-btn" onclick="toggleLang()">हिंदी</button>
-    <a class="nav-login" href="/app" data-t="nav_login">Owner Login</a>
-  </div>
-</nav>
+  <a class="call-btn" id="call-link" href="tel:+91XXXXXXXXXX">📞 Call Now</a>
+</header>
 
-<!-- ── HERO ── -->
+<!-- ── Hero ── -->
 <section class="hero">
-  <div class="hero-tag" data-t="hero_badge">🚚 Free Home Delivery</div>
-  <h1>BADRI<br><span>TRADERS</span></h1>
-  <p class="sub" data-t="hero_sub">Quality Venkys Cattle Feed<br>Delivered to Your Doorstep</p>
-  <div class="hero-btns">
-    <a class="btn-hero primary" href="#order" data-t="hero_cta1">🛒 Order Now</a>
-    <a class="btn-hero secondary" href="#products" data-t="hero_cta2">View Products</a>
-  </div>
-  <div class="hero-badges">
-    <span class="hbadge" data-t="badge1">🌾 Venkys Authorised</span>
-    <span class="hbadge" data-t="badge2">🏠 Home Delivery</span>
-    <span class="hbadge" data-t="badge3">✅ Quality Assured</span>
-    <span class="hbadge" data-t="badge4">📞 Quick Response</span>
-  </div>
-</section>
-
-<!-- ── PRODUCTS ── -->
-<section id="products">
-  <div class="container">
-    <div class="sec-label" data-t="prod_label">Our Range</div>
-    <div class="sec-title" data-t="prod_title">Product Catalogue</div>
-    <p class="sec-sub" data-t="prod_sub">All Venkys branded cattle feed — fresh stock, best prices.</p>
-    <div class="prod-grid" id="prod-grid">
-      <div class="prod-skeleton"></div>
-      <div class="prod-skeleton"></div>
-      <div class="prod-skeleton"></div>
-      <div class="prod-skeleton"></div>
+  <div class="hero-body">
+    <div class="hero-badge">Trusted Quality Feed</div>
+    <h1 class="hero-title">Premium <em>Cattle Feed</em><br>Delivered to You</h1>
+    <p class="hero-sub">High-quality nutrition for dairy cows, calves &amp; buffaloes</p>
+    <div class="hero-stats">
+      <div class="stat"><div class="stat-n" id="stat-count">—</div><div class="stat-l">Products</div></div>
+      <div class="stat"><div class="stat-n">Fast</div><div class="stat-l">Delivery</div></div>
+      <div class="stat"><div class="stat-n">Best</div><div class="stat-l">Prices</div></div>
+      <div class="stat"><div class="stat-n">100%</div><div class="stat-l">Quality</div></div>
     </div>
   </div>
 </section>
 
-<!-- ── ORDER FORM ── -->
-<section id="order">
-  <div class="container">
-    <div class="sec-label" data-t="order_label">Place Your Order</div>
-    <div class="sec-title" data-t="order_title">Order Online</div>
-    <p class="sec-sub" data-t="order_sub">Fill in the form — we'll confirm your order and deliver to your door.</p>
-    <div class="order-card">
-      <form id="order-form" onsubmit="submitOrder(event)">
-        <div class="form-grid">
-          <div class="fg">
-            <label data-t="f_name">Your Name *</label>
-            <input type="text" id="o-name" data-tp="ph_name" placeholder="Full name" required autocomplete="name">
-          </div>
-          <div class="fg">
-            <label data-t="f_phone">Phone Number *</label>
-            <input type="tel" id="o-phone" data-tp="ph_phone" placeholder="Mobile number" required autocomplete="tel" inputmode="numeric">
-          </div>
-          <div class="fg full">
-            <label data-t="f_addr">Delivery Address</label>
-            <input type="text" id="o-addr" data-tp="ph_addr" placeholder="Village / town / street" autocomplete="street-address">
-          </div>
-          <div class="fg">
-            <label data-t="f_product">Product *</label>
-            <select id="o-product" required>
-              <option value="" data-t="f_product_ph">-- Select product --</option>
-            </select>
-          </div>
-          <div class="fg">
-            <label data-t="f_qty">Quantity (bags) *</label>
-            <input type="number" id="o-qty" data-tp="ph_qty" placeholder="e.g. 2" required min="1" inputmode="numeric">
-          </div>
-          <div class="fg full">
-            <label data-t="f_note">Message / Note</label>
-            <textarea id="o-note" data-tp="ph_note" placeholder="Any special instructions, preferred delivery time, etc."></textarea>
-          </div>
-        </div>
-        <button type="submit" class="submit-btn" id="o-btn" data-t="f_submit">📦 Place Order</button>
-        <div id="order-msg"></div>
-      </form>
+<!-- ── Main ── -->
+<div class="main">
+
+  <!-- Products -->
+  <section class="products-panel">
+    <div class="panel-hd">🌾 Our Products</div>
+    <div class="cat-tabs" id="cat-tabs">
+      <button class="ctab on" onclick="setCat('all',this)">All</button>
+    </div>
+    <div class="srch-wrap">
+      <input class="srch" type="text" id="srch" placeholder="Search products…" oninput="onSearch(this.value)">
+    </div>
+    <div class="prod-meta" id="prod-meta"></div>
+    <div class="pgrid" id="pgrid">
+      <div class="skel"></div><div class="skel"></div><div class="skel"></div>
+      <div class="skel"></div><div class="skel"></div><div class="skel"></div>
+    </div>
+  </section>
+
+  <!-- Order Panel -->
+  <aside class="opanel">
+    <div class="o-hd">🛒 Place Order <span class="cbadge" id="cbadge">0</span></div>
+
+    <div class="fg">
+      <label>Your Name *</label>
+      <input type="text" id="o-name" placeholder="e.g. Ramesh Kumar">
+    </div>
+    <div class="fg">
+      <label>Phone Number *</label>
+      <input type="tel" id="o-phone" placeholder="10-digit mobile number" maxlength="10">
+    </div>
+    <div class="fg">
+      <label>Delivery Address</label>
+      <input type="text" id="o-addr" placeholder="Village / Town / Area">
+    </div>
+    <div class="fg">
+      <label>Note (optional)</label>
+      <input type="text" id="o-note" placeholder="Any special instructions…">
+    </div>
+
+    <div class="divider"></div>
+    <div class="items-lbl">Selected Items</div>
+
+    <div id="order-items">
+      <div class="empty-oi">
+        <div class="ei">🌾</div>
+        Click <b>+ Add</b> on any product<br>to build your order
+      </div>
+    </div>
+
+    <div class="total-box" id="total-box">
+      <span class="tlbl">Order Total</span>
+      <span class="tamt" id="tamt">₹0</span>
+    </div>
+
+    <button class="order-btn" id="order-btn" onclick="sendOrderEmail()">
+      📦 Place Order
+    </button>
+
+    <div class="or-divider">or</div>
+
+    <button class="wa-btn" onclick="placeOrder()">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="white">
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+      </svg>
+      Order via WhatsApp
+    </button>
+
+    <div class="order-success" id="order-success">
+      <div class="si">✅</div>
+      <h4>Order Placed Successfully!</h4>
+      <p>We've received your order and will contact you on <strong id="success-phone"></strong> shortly to confirm delivery.</p>
+    </div>
+  </aside>
+</div>
+
+<!-- ── Digital Services ── -->
+<section class="ds-section">
+  <div class="ds-wrap">
+    <div class="ds-tag">Digital Services</div>
+    <h2 class="ds-title">We Build <span>Websites</span> Too</h2>
+    <p class="ds-sub">Running a business? Let us build your digital presence — <strong>affordable, fast, mobile-first.</strong></p>
+
+    <div class="plans">
+
+      <!-- Starter -->
+      <div class="plan">
+        <div class="plan-badge starter">Starter</div>
+        <div class="plan-name">Basic</div>
+        <div class="plan-desc">Perfect for small shops &amp; local businesses</div>
+        <ul class="plan-feats">
+          <li>Landing page</li>
+          <li>Mobile-friendly design</li>
+          <li>Contact form</li>
+          <li>WhatsApp button</li>
+          <li>Google Maps embed</li>
+        </ul>
+        <a class="plan-btn" id="ds-wa-starter" href="#">Get a Quote</a>
+      </div>
+
+      <!-- Standard (Popular) -->
+      <div class="plan popular">
+        <div class="plan-pop-label">⭐ Popular</div>
+        <div class="plan-badge standard">Standard</div>
+        <div class="plan-name">Standard</div>
+        <div class="plan-desc">For retailers, traders &amp; shops</div>
+        <ul class="plan-feats">
+          <li>Multi-page website</li>
+          <li>Product catalogue</li>
+          <li>WhatsApp order integration</li>
+          <li>Photo gallery</li>
+          <li>SEO ready</li>
+          <li>Hosting setup</li>
+        </ul>
+        <a class="plan-btn popular-btn" id="ds-wa-standard" href="#">Get a Quote</a>
+      </div>
+
+      <!-- Business -->
+      <div class="plan">
+        <div class="plan-badge business">Business</div>
+        <div class="plan-name">Business</div>
+        <div class="plan-desc">Full shop manager app like this one</div>
+        <ul class="plan-feats">
+          <li>Order management</li>
+          <li>Stock tracking</li>
+          <li>Customer billing</li>
+          <li>Sales dashboard</li>
+          <li>Owner mobile app</li>
+          <li>1 year support</li>
+        </ul>
+        <a class="plan-btn" id="ds-wa-business" href="#">Get a Quote</a>
+      </div>
+
+      <!-- Enterprise -->
+      <div class="plan">
+        <div class="plan-badge enterprise">Enterprise</div>
+        <div class="plan-name">Custom</div>
+        <div class="plan-desc">Any requirement, on request</div>
+        <ul class="plan-feats">
+          <li>Any custom feature</li>
+          <li>ERP / billing systems</li>
+          <li>API integrations</li>
+          <li>Multi-branch support</li>
+          <li>Dedicated support</li>
+          <li>Flexible pricing</li>
+        </ul>
+        <a class="plan-btn enterprise-btn" id="ds-wa-enterprise" href="#">Contact Us</a>
+      </div>
+
     </div>
   </div>
 </section>
 
-<!-- ── WEB DEV SERVICES ── -->
-<section id="webdev">
-  <div class="container">
-    <div class="sec-label" data-t="web_label">Digital Services</div>
-    <div class="sec-title" data-t="web_title">We Build Websites Too</div>
-    <p class="sec-sub" data-t="web_sub">Running a business? Let us build your digital presence — affordable, fast, mobile-first.</p>
-    <div class="pkg-grid">
-
-      <div class="pkg-card">
-        <span class="pkg-badge popular" data-t="pkg1_badge">Starter</span>
-        <div class="pkg-name" data-t="pkg1_name">Basic</div>
-        <div class="pkg-tagline" data-t="pkg1_tag">Perfect for small shops &amp; local businesses</div>
-        <ul class="pkg-features">
-          <li data-t="pkg1_f1">Landing page</li>
-          <li data-t="pkg1_f2">Mobile-friendly design</li>
-          <li data-t="pkg1_f3">Contact form</li>
-          <li data-t="pkg1_f4">WhatsApp button</li>
-          <li data-t="pkg1_f5">Google Maps embed</li>
-        </ul>
-        <a href="https://wa.me/917080006857?text=Hi%2C%20I%20am%20interested%20in%20Basic%20website%20package" class="pkg-cta" target="_blank" rel="noopener" data-t="pkg_cta_quote">Get a Quote</a>
-      </div>
-
-      <div class="pkg-card featured">
-        <span class="pkg-badge std" data-t="pkg2_badge">Popular</span>
-        <div class="pkg-name" data-t="pkg2_name">Standard</div>
-        <div class="pkg-tagline" data-t="pkg2_tag">For retailers, traders &amp; shops</div>
-        <ul class="pkg-features">
-          <li data-t="pkg2_f1">Multi-page website</li>
-          <li data-t="pkg2_f2">Product catalogue</li>
-          <li data-t="pkg2_f3">WhatsApp order integration</li>
-          <li data-t="pkg2_f4">Photo gallery</li>
-          <li data-t="pkg2_f5">SEO ready</li>
-          <li data-t="pkg2_f6">Hosting setup</li>
-        </ul>
-        <a href="https://wa.me/917080006857?text=Hi%2C%20I%20am%20interested%20in%20Standard%20website%20package" class="pkg-cta" target="_blank" rel="noopener" data-t="pkg_cta_quote">Get a Quote</a>
-      </div>
-
-      <div class="pkg-card">
-        <span class="pkg-badge biz" data-t="pkg3_badge">Business</span>
-        <div class="pkg-name" data-t="pkg3_name">Business</div>
-        <div class="pkg-tagline" data-t="pkg3_tag">Full shop manager app like this one</div>
-        <ul class="pkg-features">
-          <li data-t="pkg3_f1">Order management</li>
-          <li data-t="pkg3_f2">Stock tracking</li>
-          <li data-t="pkg3_f3">Customer billing</li>
-          <li data-t="pkg3_f4">Sales dashboard</li>
-          <li data-t="pkg3_f5">Owner mobile app</li>
-          <li data-t="pkg3_f6">1 year support</li>
-        </ul>
-        <a href="https://wa.me/917080006857?text=Hi%2C%20I%20am%20interested%20in%20Business%20website%20package" class="pkg-cta" target="_blank" rel="noopener" data-t="pkg_cta_quote">Get a Quote</a>
-      </div>
-
-      <div class="pkg-card">
-        <span class="pkg-badge cst" data-t="pkg4_badge">Enterprise</span>
-        <div class="pkg-name" data-t="pkg4_name">Custom</div>
-        <div class="pkg-tagline" data-t="pkg4_tag">Any requirement, on request</div>
-        <ul class="pkg-features">
-          <li data-t="pkg4_f1">Any custom feature</li>
-          <li data-t="pkg4_f2">ERP / billing systems</li>
-          <li data-t="pkg4_f3">API integrations</li>
-          <li data-t="pkg4_f4">Multi-branch support</li>
-          <li data-t="pkg4_f5">Dedicated support</li>
-          <li data-t="pkg4_f6">Flexible pricing</li>
-        </ul>
-        <a href="https://wa.me/917080006857?text=Hi%2C%20I%20have%20a%20custom%20website%20requirement" class="pkg-cta" target="_blank" rel="noopener" data-t="pkg_cta_contact">Contact Us</a>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- ── FOOTER ── -->
-<footer>
-  <div class="foot-inner">
-    <div class="foot-brand">🌾 BADRI TRADERS</div>
-    <div class="foot-sub" data-t="foot_sub">Venkys Cattle Feed — Free Home Delivery</div>
-    <div class="foot-gstin">GSTIN: 09LEZPK0675P1Z3</div>
-    <div class="foot-addr" data-t="foot_addr">JAMUI, CHUNAR, MIRZAPUR, UTTAR PRADESH</div>
-    <div class="foot-grid">
-      <div class="foot-col">
-        <h4 data-t="foot_contact">Contact</h4>
-        <a href="tel:7080006857">📞 7080006857</a>
-        <a href="https://wa.me/917080006857" target="_blank" rel="noopener">💬 WhatsApp</a>
-        <a href="mailto:vsmita099@gmail.com">✉️ Email Us</a>
-      </div>
-      <div class="foot-col">
-        <h4 data-t="foot_links">Quick Links</h4>
-        <a href="#products" data-t="nav_products">Products</a>
-        <a href="#order" data-t="nav_order">Order</a>
-        <a href="#webdev" data-t="nav_web">Web Services</a>
-      </div>
-      <div class="foot-col">
-        <h4 data-t="foot_range">Products</h4>
-        <p data-t="foot_p1">Venkys Cattle Feed</p>
-        <p data-t="foot_p2">All breeds &amp; sizes</p>
-        <p data-t="foot_p3">Bulk orders welcome</p>
+<!-- ── Footer ── -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <img src="/images/logo.png" alt="Badri Traders" class="footer-logo"
+           onerror="this.style.display='none'">
+      <div>
+        <div class="footer-name">BADRI TRADERS</div>
+        <div class="footer-tag">Venkys Cattle Feed — Free Home Delivery</div>
       </div>
     </div>
-    <div class="foot-bottom">
-      <span class="foot-copy" data-t="foot_copy">© 2025 BADRI TRADERS. All rights reserved.</span>
-      <a href="/app" style="font-size:12px;opacity:.4;transition:opacity .15s" onmouseover="this.style.opacity='.8'" onmouseout="this.style.opacity='.4'" data-t="nav_login">Owner Login</a>
+    <div class="footer-info">
+      <div>GSTIN: 09LE2PK04725P1Z3</div>
+      <div>JAMIL CHAMAR, MIRZAPUR, UTTAR PRADESH</div>
+      <div id="f-phone">📞 +91-XXXXXXXXXX</div>
     </div>
   </div>
 </footer>
 
-<div class="toast" id="toast"></div>
-
 <script>
-'use strict';
+/* ═══════════════════════════════════════
+   CONFIG — update before going live
+═══════════════════════════════════════ */
+const WA_NUM   = '91XXXXXXXXXX';     // e.g. 919876543210  (no + sign)
+const PH_SHOW  = '+91-XXXXXXXXXX';   // displayed in header & footer
 
-/* ── i18n ── */
-const TR = {
-  en: {
-    nav_tag:       'Venkys Cattle Feed',
-    nav_products:  'Products',
-    nav_order:     'Order',
-    nav_web:       'Web Services',
-    nav_login:     'Owner Login',
-    hero_badge:    '🚚 Free Home Delivery',
-    hero_sub:      'Quality Venkys Cattle Feed<br>Delivered to Your Doorstep',
-    hero_cta1:     '🛒 Order Now',
-    hero_cta2:     'View Products',
-    badge1:        '🌾 Venkys Authorised',
-    badge2:        '🏠 Home Delivery',
-    badge3:        '✅ Quality Assured',
-    badge4:        '📞 Quick Response',
-    prod_label:    'Our Range',
-    prod_title:    'Product Catalogue',
-    prod_sub:      'All Venkys branded cattle feed — fresh stock, best prices.',
-    prod_order:    'Order Now →',
-    prod_call:     'Call 7080006857 to order',
-    prod_soon:     'Products coming soon — call us to order!',
-    prod_err:      'Could not load products. Please call us.',
-    order_label:   'Place Your Order',
-    order_title:   'Order Online',
-    order_sub:     'Fill in the form — we\'ll confirm your order and deliver to your door.',
-    f_name:        'Your Name *',
-    f_phone:       'Phone Number *',
-    f_addr:        'Delivery Address',
-    f_product:     'Product *',
-    f_product_ph:  '-- Select product --',
-    f_qty:         'Quantity (bags) *',
-    f_note:        'Message / Note',
-    f_submit:      '📦 Place Order',
-    f_sending:     '⏳ Sending…',
-    ph_name:       'Full name',
-    ph_phone:      'Mobile number',
-    ph_addr:       'Village / town / street',
-    ph_qty:        'e.g. 2',
-    ph_note:       'Any special instructions, preferred delivery time, etc.',
-    web_label:     'Digital Services',
-    web_title:     'We Build Websites Too',
-    web_sub:       'Running a business? Let us build your digital presence — affordable, fast, mobile-first.',
-    pkg1_badge:    'Starter',
-    pkg1_name:     'Basic',
-    pkg1_tag:      'Perfect for small shops & local businesses',
-    pkg1_f1:       'Landing page',
-    pkg1_f2:       'Mobile-friendly design',
-    pkg1_f3:       'Contact form',
-    pkg1_f4:       'WhatsApp button',
-    pkg1_f5:       'Google Maps embed',
-    pkg2_badge:    'Popular',
-    pkg2_name:     'Standard',
-    pkg2_tag:      'For retailers, traders & shops',
-    pkg2_f1:       'Multi-page website',
-    pkg2_f2:       'Product catalogue',
-    pkg2_f3:       'WhatsApp order integration',
-    pkg2_f4:       'Photo gallery',
-    pkg2_f5:       'SEO ready',
-    pkg2_f6:       'Hosting setup',
-    pkg3_badge:    'Business',
-    pkg3_name:     'Business',
-    pkg3_tag:      'Full shop manager app like this one',
-    pkg3_f1:       'Order management',
-    pkg3_f2:       'Stock tracking',
-    pkg3_f3:       'Customer billing',
-    pkg3_f4:       'Sales dashboard',
-    pkg3_f5:       'Owner mobile app',
-    pkg3_f6:       '1 year support',
-    pkg4_badge:    'Enterprise',
-    pkg4_name:     'Custom',
-    pkg4_tag:      'Any requirement, on request',
-    pkg4_f1:       'Any custom feature',
-    pkg4_f2:       'ERP / billing systems',
-    pkg4_f3:       'API integrations',
-    pkg4_f4:       'Multi-branch support',
-    pkg4_f5:       'Dedicated support',
-    pkg4_f6:       'Flexible pricing',
-    pkg_cta_quote: 'Get a Quote',
-    pkg_cta_contact:'Contact Us',
-    foot_sub:      'Venkys Cattle Feed — Free Home Delivery',
-    foot_addr:     'JAMUI, CHUNAR, MIRZAPUR, UTTAR PRADESH',
-    foot_contact:  'Contact',
-    foot_links:    'Quick Links',
-    foot_range:    'Products',
-    foot_p1:       'Venkys Cattle Feed',
-    foot_p2:       'All breeds & sizes',
-    foot_p3:       'Bulk orders welcome',
-    foot_copy:     '© 2025 BADRI TRADERS. All rights reserved.',
-    toast_ok:      '✅ Order placed successfully!',
-    order_ok:      '✅ ',
-    order_err:     '❌ ',
-  },
-  hi: {
-    nav_tag:       'वेंकीज़ पशु आहार',
-    nav_products:  'उत्पाद',
-    nav_order:     'ऑर्डर',
-    nav_web:       'वेब सेवाएं',
-    nav_login:     'मालिक लॉगिन',
-    hero_badge:    '🚚 मुफ़्त होम डिलीवरी',
-    hero_sub:      'गुणवत्तापूर्ण वेंकीज़ पशु आहार<br>आपके दरवाज़े तक',
-    hero_cta1:     '🛒 अभी ऑर्डर करें',
-    hero_cta2:     'उत्पाद देखें',
-    badge1:        '🌾 वेंकीज़ अधिकृत',
-    badge2:        '🏠 होम डिलीवरी',
-    badge3:        '✅ गुणवत्ता गारंटी',
-    badge4:        '📞 त्वरित जवाब',
-    prod_label:    'हमारी श्रृंखला',
-    prod_title:    'उत्पाद सूची',
-    prod_sub:      'सभी वेंकीज़ ब्रांड पशु आहार — ताज़ा स्टॉक, सर्वोत्तम मूल्य।',
-    prod_order:    'ऑर्डर करें →',
-    prod_call:     'ऑर्डर के लिए कॉल करें 7080006857',
-    prod_soon:     'उत्पाद जल्द आएंगे — अभी कॉल करें!',
-    prod_err:      'उत्पाद लोड नहीं हो सके। कृपया कॉल करें।',
-    order_label:   'ऑर्डर दें',
-    order_title:   'ऑनलाइन ऑर्डर करें',
-    order_sub:     'फॉर्म भरें — हम आपके ऑर्डर की पुष्टि कर डिलीवरी देंगे।',
-    f_name:        'आपका नाम *',
-    f_phone:       'मोबाइल नंबर *',
-    f_addr:        'डिलीवरी पता',
-    f_product:     'उत्पाद *',
-    f_product_ph:  '-- उत्पाद चुनें --',
-    f_qty:         'मात्रा (बोरे) *',
-    f_note:        'संदेश / नोट',
-    f_submit:      '📦 ऑर्डर दें',
-    f_sending:     '⏳ भेज रहे हैं…',
-    ph_name:       'पूरा नाम',
-    ph_phone:      'मोबाइल नंबर',
-    ph_addr:       'गाँव / शहर / गली',
-    ph_qty:        'जैसे 2',
-    ph_note:       'कोई विशेष निर्देश, पसंदीदा डिलीवरी समय आदि।',
-    web_label:     'डिजिटल सेवाएं',
-    web_title:     'हम वेबसाइट भी बनाते हैं',
-    web_sub:       'व्यवसाय चला रहे हैं? हम आपकी डिजिटल पहचान बनाएंगे — किफायती, तेज़, मोबाइल-फर्स्ट।',
-    pkg1_badge:    'स्टार्टर',
-    pkg1_name:     'बेसिक',
-    pkg1_tag:      'छोटी दुकानों और स्थानीय व्यवसायों के लिए',
-    pkg1_f1:       'लैंडिंग पेज',
-    pkg1_f2:       'मोबाइल-फ्रेंडली डिज़ाइन',
-    pkg1_f3:       'संपर्क फ़ॉर्म',
-    pkg1_f4:       'WhatsApp बटन',
-    pkg1_f5:       'Google Maps',
-    pkg2_badge:    'लोकप्रिय',
-    pkg2_name:     'स्टैंडर्ड',
-    pkg2_tag:      'व्यापारियों और दुकानदारों के लिए',
-    pkg2_f1:       'मल्टी-पेज वेबसाइट',
-    pkg2_f2:       'उत्पाद सूची',
-    pkg2_f3:       'WhatsApp ऑर्डर',
-    pkg2_f4:       'फोटो गैलरी',
-    pkg2_f5:       'SEO तैयार',
-    pkg2_f6:       'होस्टिंग सेटअप',
-    pkg3_badge:    'बिज़नेस',
-    pkg3_name:     'बिज़नेस',
-    pkg3_tag:      'इसी जैसा शॉप मैनेजर ऐप',
-    pkg3_f1:       'ऑर्डर प्रबंधन',
-    pkg3_f2:       'स्टॉक ट्रैकिंग',
-    pkg3_f3:       'ग्राहक बिलिंग',
-    pkg3_f4:       'सेल्स डैशबोर्ड',
-    pkg3_f5:       'मालिक मोबाइल ऐप',
-    pkg3_f6:       '1 साल सपोर्ट',
-    pkg4_badge:    'एंटरप्राइज़',
-    pkg4_name:     'कस्टम',
-    pkg4_tag:      'कोई भी ज़रूरत, मांग पर',
-    pkg4_f1:       'कोई भी कस्टम फीचर',
-    pkg4_f2:       'ERP / बिलिंग सिस्टम',
-    pkg4_f3:       'API इंटीग्रेशन',
-    pkg4_f4:       'मल्टी-ब्रांच सपोर्ट',
-    pkg4_f5:       'समर्पित सपोर्ट',
-    pkg4_f6:       'लचीली कीमत',
-    pkg_cta_quote: 'कोटेशन लें',
-    pkg_cta_contact:'संपर्क करें',
-    foot_sub:      'वेंकीज़ पशु आहार — मुफ़्त होम डिलीवरी',
-    foot_addr:     'जमुई, चुनार, मिर्ज़ापुर, उत्तर प्रदेश',
-    foot_contact:  'संपर्क',
-    foot_links:    'त्वरित लिंक',
-    foot_range:    'उत्पाद',
-    foot_p1:       'वेंकीज़ पशु आहार',
-    foot_p2:       'सभी नस्लें और साइज़',
-    foot_p3:       'थोक ऑर्डर स्वागत',
-    foot_copy:     '© 2025 BADRI TRADERS. सर्वाधिकार सुरक्षित।',
-    toast_ok:      '✅ ऑर्डर सफलतापूर्वक दर्ज हो गया!',
-    order_ok:      '✅ ',
-    order_err:     '❌ ',
-  }
+/* ── apply config ── */
+document.getElementById('call-link').href = 'tel:' + WA_NUM;
+document.getElementById('f-phone').textContent = '📞 ' + PH_SHOW;
+
+const dsLinks = {
+  'ds-wa-starter':    'Hi, I am interested in the *Basic Starter website* package. Please share more details.',
+  'ds-wa-standard':   'Hi, I am interested in the *Standard website* package for my shop. Please share more details.',
+  'ds-wa-business':   'Hi, I am interested in the *Business app* package (like the shop manager). Please share more details.',
+  'ds-wa-enterprise': 'Hi, I need a *custom website/app solution* for my business. Can we discuss?',
 };
+Object.entries(dsLinks).forEach(([id, msg]) => {
+  const el = document.getElementById(id);
+  if (el) el.href = 'https://wa.me/' + WA_NUM + '?text=' + encodeURIComponent(msg);
+});
 
-let currentLang = localStorage.getItem('btLang') || 'en';
-
-function t(key) {
-  return TR[currentLang][key] || TR.en[key] || key;
+/* ═══════════════════════════════════════
+   HELPERS
+═══════════════════════════════════════ */
+const CATS = [
+  { key:'Calf',       kw:['calf'] },
+  { key:'Trans Care', kw:['trans'] },
+  { key:'Uttara',     kw:['uttara','uttam'] },
+  { key:'Dairy',      kw:['dairy','yield','booster','milk','doodh'] },
+];
+function getCat(name) {
+  const n = name.toLowerCase();
+  for (const c of CATS) if (c.kw.some(k => n.includes(k))) return c.key;
+  return 'Other';
 }
-
-function applyLang() {
-  document.documentElement.lang = currentLang;
-  document.getElementById('lang-btn').textContent = currentLang === 'en' ? 'हिंदी' : 'EN';
-
-  // text content
-  document.querySelectorAll('[data-t]').forEach(el => {
-    const key = el.getAttribute('data-t');
-    const val = t(key);
-    if (el.tagName === 'INPUT' || el.tagName === 'OPTION') {
-      // handled via placeholder / data-tp
-    } else {
-      el.innerHTML = val;
-    }
-  });
-
-  // placeholders
-  document.querySelectorAll('[data-tp]').forEach(el => {
-    el.placeholder = t(el.getAttribute('data-tp'));
-  });
-
-  // product grid order buttons (dynamically rendered)
-  document.querySelectorAll('.prod-order-btn').forEach(btn => {
-    btn.textContent = t('prod_order');
-  });
-
-  // product select first option
-  const firstOpt = document.querySelector('#o-product option[value=""]');
-  if (firstOpt) firstOpt.textContent = t('f_product_ph');
+const COLORS = ['#2e7d32','#1565c0','#6a1b9a','#e65100','#00695c','#ad1457','#4527a0','#558b2f'];
+function clr(name) {
+  let h = 0;
+  for (let i=0;i<name.length;i++) h = name.charCodeAt(i) + ((h<<5)-h);
+  return COLORS[Math.abs(h)%COLORS.length];
 }
+function initials(name) { return name.split(/\s+/).slice(0,2).map(w=>w[0]).join('').toUpperCase(); }
+function slug(name)     { return name.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,''); }
+function fmt(n)         { return '₹'+Number(n).toLocaleString('en-IN'); }
 
-function toggleLang() {
-  currentLang = currentLang === 'en' ? 'hi' : 'en';
-  localStorage.setItem('btLang', currentLang);
-  applyLang();
-}
+/* ═══════════════════════════════════════
+   STATE
+═══════════════════════════════════════ */
+let products = [], cart = {}, activeCat = 'all', query = '';
 
-/* ── Toast ── */
-function toast(msg, dur=2800) {
-  const el = document.getElementById('toast');
-  el.textContent = msg; el.classList.add('show');
-  setTimeout(() => el.classList.remove('show'), dur);
-}
-
-/* ── Load public products ── */
-async function loadProducts() {
-  const grid = document.getElementById('prod-grid');
-  const sel  = document.getElementById('o-product');
+/* ═══════════════════════════════════════
+   LOAD
+═══════════════════════════════════════ */
+async function load() {
   try {
-    const res  = await fetch('/api/public/rates');
-    const data = await res.json();
-    if (!data.length) {
-      grid.innerHTML = `<div class="prod-empty"><p style="font-size:28px">🌾</p><p>${t('prod_soon')}</p></div>`;
-      sel.innerHTML = `<option value="">${t('prod_call')}</option>`;
-      return;
-    }
-    grid.innerHTML = data.map(p => `
-      <div class="prod-card">
-        <div class="prod-name">${esc(p.name)}</div>
-        <div class="prod-pack">${p.packSize} kg bag</div>
-        <div class="prod-price">₹${Number(p.retailerPrice||p.pricePerBag||0).toLocaleString('en-IN')}<span>/ bag</span></div>
-        <button class="prod-order-btn" onclick="quickOrder('${esc(p.name)}')">${t('prod_order')}</button>
-      </div>`).join('');
-    sel.innerHTML = `<option value="">${t('f_product_ph')}</option>` +
-      data.map(p => `<option value="${esc(p.name)} (${p.packSize}kg)">${esc(p.name)} — ${p.packSize}kg bag</option>`).join('');
+    const r = await fetch('/api/public/rates');
+    if (!r.ok) throw new Error(r.status);
+    products = await r.json();
+    document.getElementById('stat-count').textContent = products.length + '+';
+    buildTabs();
+    render();
   } catch {
-    grid.innerHTML = `<div class="prod-empty"><p>${t('prod_err')}</p></div>`;
+    document.getElementById('pgrid').innerHTML =
+      `<div style="grid-column:1/-1;text-align:center;padding:40px;color:#c62828">
+        ⚠️ Could not load products. Please refresh.
+      </div>`;
   }
 }
 
-function quickOrder(name) {
-  document.getElementById('o-product').value =
-    [...document.getElementById('o-product').options].find(o => o.text.startsWith(name))?.value || '';
-  document.getElementById('order').scrollIntoView({ behavior: 'smooth' });
-  setTimeout(() => document.getElementById('o-name').focus(), 500);
+/* ═══════════════════════════════════════
+   TABS
+═══════════════════════════════════════ */
+function buildTabs() {
+  const seen = [...new Set(products.map(p => getCat(p.name)))];
+  const tabs = document.getElementById('cat-tabs');
+  tabs.innerHTML =
+    `<button class="ctab on" onclick="setCat('all',this)">All (${products.length})</button>` +
+    seen.map(c => {
+      const n = products.filter(p=>getCat(p.name)===c).length;
+      return `<button class="ctab" onclick="setCat('${c}',this)">${c} (${n})</button>`;
+    }).join('');
+}
+function setCat(cat, btn) {
+  activeCat = cat;
+  document.querySelectorAll('.ctab').forEach(t=>t.classList.remove('on'));
+  btn.classList.add('on');
+  render();
+}
+function onSearch(v) { query = v.trim(); render(); }
+
+/* ═══════════════════════════════════════
+   RENDER PRODUCTS
+═══════════════════════════════════════ */
+function render() {
+  const list = products.filter(p => {
+    const mc = activeCat==='all' || getCat(p.name)===activeCat;
+    const ms = !query || p.name.toLowerCase().includes(query.toLowerCase());
+    return mc && ms;
+  });
+
+  document.getElementById('prod-meta').textContent =
+    list.length + ' product' + (list.length!==1?'s':'') + ' found';
+
+  const grid = document.getElementById('pgrid');
+  if (!list.length) {
+    grid.innerHTML = `<div style="grid-column:1/-1;text-align:center;padding:40px;color:var(--text3)">
+      <div style="font-size:32px;margin-bottom:8px">🌾</div>No products found</div>`;
+    return;
+  }
+
+  grid.innerHTML = list.map((p,i) => {
+    const ic     = (cart[p.id]||0) > 0;
+    const color  = clr(p.name);
+    const ini    = initials(p.name);
+    const cat    = getCat(p.name);
+    const price  = p.retailerPrice ?? p.pricePerBag ?? 0;
+    const sl     = slug(p.name);
+    return `
+    <div class="pcard${ic?' incart':''}" style="animation-delay:${Math.min(i,12)*.04}s">
+      <div class="pimg-wrap">
+        <div class="pph" style="background:${color}">${ini}</div>
+        <img class="pimg" src="/images/${sl}.jpg" alt="${p.name}" onerror="this.style.display='none'">
+        <div class="pcatbdg">${cat}</div>
+      </div>
+      <div class="pinfo">
+        <div class="pname">${p.name}</div>
+        <div class="ppack">📦 ${p.packSize} kg / bag</div>
+        <div class="pprice">${fmt(price)}<span> /bag</span></div>
+        <button class="addbtn${ic?' incart':''}" onclick="addItem('${p.id}')">
+          ${ic?`✓ Added (${cart[p.id]})`:'+ Add to Order'}
+        </button>
+      </div>
+    </div>`;
+  }).join('');
 }
 
-function esc(s) {
-  return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+/* ═══════════════════════════════════════
+   CART
+═══════════════════════════════════════ */
+function addItem(id) {
+  cart[id] = (cart[id]||0) + 1;
+  render(); renderCart();
+  if (window.innerWidth <= 800)
+    document.querySelector('.opanel').scrollIntoView({behavior:'smooth',block:'start'});
+}
+function chgQty(id, d) {
+  cart[id] = Math.max(0, (cart[id]||0) + d);
+  if (cart[id]===0) delete cart[id];
+  render(); renderCart();
+}
+function rmItem(id) { delete cart[id]; render(); renderCart(); }
+
+function renderCart() {
+  const ids   = Object.keys(cart);
+  const badge = document.getElementById('cbadge');
+  const tbox  = document.getElementById('total-box');
+  const cont  = document.getElementById('order-items');
+
+  const qty = ids.reduce((s,id)=>s+cart[id],0);
+  badge.style.display = qty ? 'inline' : 'none';
+  badge.textContent   = qty;
+
+  if (!ids.length) {
+    cont.innerHTML = `<div class="empty-oi"><div class="ei">🌾</div>Click <b>+ Add</b> on any product<br>to build your order</div>`;
+    tbox.style.display = 'none'; return;
+  }
+
+  let total = 0;
+  cont.innerHTML = ids.map(id => {
+    const p = products.find(x=>x.id===id); if(!p) return '';
+    const price = p.retailerPrice ?? p.pricePerBag ?? 0;
+    const amt   = price * cart[id];
+    total += amt;
+    return `
+    <div class="oitem">
+      <div class="oclr" style="background:${clr(p.name)}"></div>
+      <div class="oinfo">
+        <div class="oname">${p.name}</div>
+        <div class="ometa">${p.packSize}kg × ${fmt(price)}</div>
+      </div>
+      <div class="oqty">
+        <button class="qbtn" onclick="chgQty('${id}',-1)">−</button>
+        <span class="qval">${cart[id]}</span>
+        <button class="qbtn" onclick="chgQty('${id}',1)">+</button>
+      </div>
+      <div class="oamt">${fmt(amt)}</div>
+      <button class="odel" onclick="rmItem('${id}')">✕</button>
+    </div>`;
+  }).join('');
+
+  document.getElementById('tamt').textContent = fmt(total);
+  tbox.style.display = 'flex';
 }
 
-/* ── Submit order ── */
-async function submitOrder(e) {
-  e.preventDefault();
-  const btn = document.getElementById('o-btn');
-  const msg = document.getElementById('order-msg');
-  msg.style.display = 'none';
+/* ═══════════════════════════════════════
+   PLACE ORDER → Email (primary)
+═══════════════════════════════════════ */
+function getOrderDetails() {
+  const name  = document.getElementById('o-name').value.trim();
+  const phone = document.getElementById('o-phone').value.trim();
+  const addr  = document.getElementById('o-addr').value.trim();
+  const note  = document.getElementById('o-note').value.trim();
+  const ids   = Object.keys(cart);
+  if (!name)             { alert('Please enter your name'); document.getElementById('o-name').focus(); return null; }
+  if (phone.length < 10) { alert('Please enter a valid 10-digit phone number'); document.getElementById('o-phone').focus(); return null; }
+  if (!ids.length)       { alert('Please add at least one product'); return null; }
+  return { name, phone, addr, note, ids };
+}
 
-  const payload = {
-    name:     document.getElementById('o-name').value.trim(),
-    phone:    document.getElementById('o-phone').value.trim(),
-    address:  document.getElementById('o-addr').value.trim(),
-    product:  document.getElementById('o-product').value,
-    quantity: document.getElementById('o-qty').value,
-    note:     document.getElementById('o-note').value.trim()
-  };
+async function sendOrderEmail() {
+  const d = getOrderDetails(); if (!d) return;
+  const { name, phone, addr, note, ids } = d;
 
+  const btn = document.getElementById('order-btn');
   btn.disabled = true;
-  btn.textContent = t('f_sending');
+  btn.textContent = 'Sending…';
+
+  const items = ids.map(id => {
+    const p = products.find(x=>x.id===id); if(!p) return null;
+    return { product: p.name, quantity: cart[id] };
+  }).filter(Boolean);
+
   try {
-    const res  = await fetch('/api/public/order', {
+    const res = await fetch('/api/public/order', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload)
+      body: JSON.stringify({ name, phone, address: addr, items, note })
     });
-    const data = await res.json();
-    if (!res.ok) throw new Error(data.error || 'Something went wrong');
-    msg.className = 'ok'; msg.style.display = 'block';
-    msg.innerHTML = t('order_ok') + (data.message || 'Order placed! We will contact you soon.');
-    document.getElementById('order-form').reset();
-    loadProducts();
-    toast(t('toast_ok'));
+    if (!res.ok) throw new Error('Server error');
   } catch (err) {
-    msg.className = 'err'; msg.style.display = 'block';
-    msg.textContent = t('order_err') + err.message;
-  } finally {
     btn.disabled = false;
-    btn.textContent = t('f_submit');
+    btn.textContent = '📦 Place Order';
+    alert('Could not send order. Please try WhatsApp below or call us directly.');
+    return;
   }
+
+  // Success: show confirmation, hide buttons, clear cart
+  document.getElementById('success-phone').textContent = phone;
+  document.getElementById('order-success').style.display = 'flex';
+  btn.style.display = 'none';
+  document.querySelector('.or-divider').style.display = 'none';
+  document.querySelector('.wa-btn').style.display = 'none';
+  cart = {};
+  renderCart();
 }
 
-// init
-applyLang();
-loadProducts();
+/* ── WhatsApp (secondary) ── */
+function placeOrder() {
+  const d = getOrderDetails(); if (!d) return;
+  const { name, phone, addr, note, ids } = d;
+
+  let total = 0;
+  const lines = ids.map(id => {
+    const p = products.find(x=>x.id===id); if(!p) return '';
+    const price = p.retailerPrice ?? p.pricePerBag ?? 0;
+    const amt   = price * cart[id];
+    total += amt;
+    return `  • ${p.name} (${p.packSize}kg) × ${cart[id]} bags = ${fmt(amt)}`;
+  }).filter(Boolean).join('\n');
+
+  const addrLine = addr ? `\n📍 *Address:* ${addr}` : '';
+  const noteLine = note ? `\n📝 *Note:* ${note}` : '';
+  const msg = `🐄 *New Order — Badri Traders*\n\n👤 *Name:* ${name}\n📞 *Phone:* ${phone}${addrLine}${noteLine}\n\n📦 *Items:*\n${lines}\n\n💰 *Total: ${fmt(total)}*\n\nKindly confirm my order. Thank you! 🙏`;
+  window.open(`https://wa.me/${WA_NUM}?text=${encodeURIComponent(msg)}`, '_blank');
+}
+
+load();
 </script>
 </body>
 </html>
