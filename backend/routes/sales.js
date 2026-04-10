@@ -23,36 +23,35 @@ router.get('/', async (req, res) => {
 });
 
 // POST /api/sales  — creates sale atomically via stored procedure
+// customerId is optional — null/omitted means Walk-in / Cash sale
 router.post('/', async (req, res) => {
   const {
     customerId, customerName, customerType,
     items, total, paidAmount, payStatus, notes, date
   } = req.body;
 
-  if (!customerId || !date || !items?.length) {
-    return res.status(400).json({ error: 'customerId, date and items are required' });
+  if (!date || !items?.length) {
+    return res.status(400).json({ error: 'date and items are required' });
   }
 
   const saleId = uid();
 
-  // Call the atomic stored procedure (bill seq + insert + stock deduction)
   const { data, error } = await supabase.rpc('create_sale', {
     p_user_id:       req.userId,
     p_id:            saleId,
-    p_customer_id:   customerId,
-    p_customer_name: customerName || '',
+    p_customer_id:   customerId  || null,
+    p_customer_name: customerName || 'Walk-in / Cash',
     p_customer_type: customerType || '',
     p_total:         total || 0,
     p_paid_amount:   paidAmount || 0,
-    p_pay_status:    payStatus || 'unpaid',
+    p_pay_status:    payStatus || 'paid',
     p_notes:         notes || '',
     p_date:          date,
-    p_items:         items   // JSONB — frontend sends camelCase, procedure uses camelCase keys
+    p_items:         items
   });
 
   if (error) return res.status(500).json({ error: error.message });
 
-  // Fetch the full sale with items to return to the frontend
   const { data: full, error: fetchErr } = await supabase
     .from('sales')
     .select('*, items:sale_items(*)')

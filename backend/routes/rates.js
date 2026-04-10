@@ -17,13 +17,22 @@ router.get('/', async (req, res) => {
 
 // POST /api/rates  (create)
 router.post('/', async (req, res) => {
-  const { name, packSize, pricePerBag, retailerPrice, dealerPrice } = req.body;
+  const { name, packSize, costPrice, pricePerBag, retailerPrice, dealerPrice, isPublic } = req.body;
   if (!name || !packSize) return res.status(400).json({ error: 'name and packSize are required' });
+  const cp = costPrice ?? 0;
   const rp = retailerPrice ?? pricePerBag ?? 0;
   const dp = dealerPrice ?? rp;
   const { data, error } = await supabase
     .from('rates')
-    .insert({ user_id: req.userId, name, pack_size: packSize, price_per_bag: rp, retailer_price: rp, dealer_price: dp })
+    .insert({
+      user_id: req.userId, name,
+      pack_size: packSize,
+      cost_price: cp,
+      price_per_bag: rp,
+      retailer_price: rp,
+      dealer_price: dp,
+      is_public: isPublic ?? false
+    })
     .select()
     .single();
   if (error) return res.status(500).json({ error: error.message });
@@ -35,15 +44,23 @@ router.post('/', async (req, res) => {
 router.put('/bulk', async (req, res) => {
   const updates = req.body;
   if (!Array.isArray(updates) || !updates.length) {
-    return res.status(400).json({ error: 'Expected an array of { id, retailerPrice, dealerPrice }' });
+    return res.status(400).json({ error: 'Expected an array of updates' });
   }
   const results = [];
-  for (const { id, retailerPrice, dealerPrice, pricePerBag } of updates) {
+  for (const { id, costPrice, retailerPrice, dealerPrice, pricePerBag, isPublic } of updates) {
+    const cp = costPrice ?? 0;
     const rp = retailerPrice ?? pricePerBag ?? 0;
     const dp = dealerPrice ?? rp;
+    const update = {
+      cost_price:    cp,
+      price_per_bag: rp,
+      retailer_price: rp,
+      dealer_price:  dp,
+    };
+    if (isPublic !== undefined) update.is_public = isPublic;
     const { data, error } = await supabase
       .from('rates')
-      .update({ price_per_bag: rp, retailer_price: rp, dealer_price: dp })
+      .update(update)
       .eq('id', id)
       .eq('user_id', req.userId)
       .select()
@@ -56,13 +73,15 @@ router.put('/bulk', async (req, res) => {
 
 // PUT /api/rates/:id  (update single rate)
 router.put('/:id', async (req, res) => {
-  const { name, packSize, pricePerBag, retailerPrice, dealerPrice } = req.body;
+  const { name, packSize, costPrice, pricePerBag, retailerPrice, dealerPrice, isPublic } = req.body;
   const update = {};
   if (name           !== undefined) update.name           = name;
   if (packSize       !== undefined) update.pack_size       = packSize;
+  if (costPrice      !== undefined) update.cost_price      = costPrice;
   if (retailerPrice  !== undefined) { update.retailer_price = retailerPrice; update.price_per_bag = retailerPrice; }
   else if (pricePerBag !== undefined) { update.price_per_bag = pricePerBag; update.retailer_price = pricePerBag; }
   if (dealerPrice    !== undefined) update.dealer_price   = dealerPrice;
+  if (isPublic       !== undefined) update.is_public       = isPublic;
   const { data, error } = await supabase
     .from('rates')
     .update(update)
