@@ -6,7 +6,7 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="theme-color" content="#B86A0A">
-<title>PashuFeed Pro</title>
+<title>BADRI TRADERS — Owner Dashboard</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap');
 :root{
@@ -179,18 +179,50 @@ input,select,textarea{font-family:var(--F);outline:none;font-size:14px;}
 .ptable input:focus{border-color:var(--acc);background:#fff;}
 
 /* ── BILL PRINT ── */
-.bill-wrap{background:#fff;border:1px solid var(--bdr);border-radius:var(--r);padding:14px;margin-bottom:10px;font-size:12.5px;}
-.bill-top{text-align:center;border-bottom:2px dashed var(--bdr);padding-bottom:10px;margin-bottom:10px;}
-.bill-top h2{font-size:18px;font-weight:800;color:var(--acc2);letter-spacing:-.3px;}
-.bill-top p{font-size:11px;color:var(--tx3);}
-.bnum{font-size:11px;font-weight:700;color:var(--blu);background:var(--blubg);
-  padding:2px 9px;border-radius:99px;display:inline-block;margin:4px 0;}
-.binfo{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:10px;}
-.bil{font-size:10px;color:var(--tx3);font-weight:700;text-transform:uppercase;margin-bottom:1px;}
-.btable{width:100%;border-collapse:collapse;font-size:12px;margin-bottom:10px;}
-.btable th{background:var(--surf2);padding:5px 6px;text-align:left;font-size:10px;font-weight:700;color:var(--tx2);text-transform:uppercase;}
-.btable td{padding:6px;border-bottom:1px solid var(--bdr);}
-.btable .tot td{background:var(--accbg);font-weight:700;color:var(--acc2);}
+.bill-wrap{background:#fff;border:2px solid #222;padding:0;margin-bottom:10px;font-size:12px;font-family:'DM Sans',sans-serif;}
+/* GST invoice header bar */
+.bill-hbar{display:flex;justify-content:space-between;align-items:center;padding:5px 10px;border-bottom:1px solid #222;font-size:10.5px;}
+.bill-hbar .gstin{font-weight:700;}
+.bill-hbar .gst-badge{background:#222;color:#fff;padding:2px 10px;font-weight:800;font-size:11px;letter-spacing:.5px;}
+.bill-hbar .mob{font-weight:700;}
+/* Business name block */
+.bill-biz{text-align:center;padding:8px 10px 6px;border-bottom:1px solid #222;}
+.bill-biz h2{font-size:24px;font-weight:900;letter-spacing:.5px;color:#000;margin:0;}
+.bill-biz p{font-size:11.5px;color:#333;margin:2px 0 0;}
+/* Customer + Invoice no. row */
+.bill-cust-row{display:flex;border-bottom:1px solid #222;}
+.bill-cust{flex:1;padding:7px 10px;border-right:1px solid #222;font-size:11.5px;}
+.bill-cust .bcl{font-size:10px;font-weight:700;color:#555;margin-bottom:2px;}
+.bill-cust .bcv{border-bottom:1px dotted #999;min-height:18px;margin-bottom:4px;padding-bottom:1px;font-weight:600;}
+.bill-inv{width:130px;flex-shrink:0;display:flex;flex-direction:column;}
+.bill-inv-no{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:6px;border-bottom:1px solid #222;}
+.bill-inv-no .ilab{font-size:9px;font-weight:700;text-transform:uppercase;color:#555;}
+.bill-inv-no .ival{font-size:22px;font-weight:900;color:#000;}
+.bill-inv-date{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:6px;}
+.bill-inv-date .ilab{font-size:9px;font-weight:700;text-transform:uppercase;color:#555;}
+.bill-inv-date .ival{font-size:13px;font-weight:700;color:#000;}
+/* Item table */
+.btable{width:100%;border-collapse:collapse;font-size:11.5px;margin:0;}
+.btable th{background:#f0f0f0;padding:5px 6px;text-align:center;font-size:10px;font-weight:800;color:#000;border:1px solid #222;text-transform:uppercase;}
+.btable th:nth-child(2){text-align:left;}
+.btable td{padding:5px 6px;border:1px solid #555;vertical-align:top;}
+.btable td:first-child,.btable td:nth-child(3),.btable td:nth-child(4),.btable td:nth-child(5),.btable td:nth-child(6){text-align:center;}
+/* Amount in words + total row */
+.bill-total-row{display:flex;border-top:1px solid #222;}
+.bill-words{flex:1;padding:6px 10px;border-right:1px solid #222;font-size:10.5px;}
+.bill-words .wlab{font-size:9.5px;font-weight:700;color:#555;margin-bottom:2px;}
+.bill-words .wval{border-bottom:1px dotted #999;min-height:16px;font-weight:600;font-size:11px;}
+.bill-total-cell{display:flex;flex-direction:column;justify-content:center;align-items:center;width:200px;padding:6px 10px;}
+.bill-total-cell .tlab{font-size:10px;font-weight:800;text-transform:uppercase;color:#333;}
+.bill-total-cell .tval{font-size:16px;font-weight:900;color:#000;}
+/* Paid/balance rows */
+.bill-paid-row{display:flex;justify-content:flex-end;gap:0;border-top:1px solid #ccc;}
+.bill-paid-row .pr-cell{padding:4px 10px;font-size:11px;font-weight:700;text-align:right;}
+/* Footer */
+.bill-foot{display:flex;border-top:1px solid #222;font-size:10px;}
+.bill-foot .ft-tc{flex:1;padding:7px 10px;border-right:1px solid #222;line-height:1.6;}
+.bill-foot .ft-cert{flex:1;padding:7px 10px;text-align:center;border-right:1px solid #222;display:flex;align-items:center;justify-content:center;font-size:10px;}
+.bill-foot .ft-sign{width:130px;padding:7px 10px;text-align:right;display:flex;flex-direction:column;justify-content:space-between;}
 .bfoot{border-top:2px dashed var(--bdr);padding-top:8px;text-align:center;font-size:11px;color:var(--tx3);margin-top:8px;}
 
 /* ── WEEK CHART ── */
@@ -247,7 +279,12 @@ input,select,textarea{font-family:var(--F);outline:none;font-size:14px;}
   .hdr,.bnav,.main>*:not(#print-area){display:none!important;}
   .print-only{display:block!important;}
   body{background:#fff;}
-  #print-area{position:fixed;inset:0;padding:20px;}
+  #print-area{position:fixed;inset:0;padding:16px;}
+  .bill-wrap,.btable,.btable th,.btable td,.bill-hbar,.bill-biz,.bill-cust-row,
+  .bill-cust,.bill-inv,.bill-total-row,.bill-foot,.bill-foot *,
+  .bill-inv-no,.bill-inv-date{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  .btable th{background:#e0e0e0!important;}
+  .bill-hbar .gst-badge{background:#222!important;color:#fff!important;}
 }
 </style>
 </head>
@@ -257,9 +294,9 @@ input,select,textarea{font-family:var(--F);outline:none;font-size:14px;}
 <div id="auth-screen" style="position:fixed;inset:0;z-index:999;background:var(--bg);display:flex;align-items:center;justify-content:center;padding:20px;">
   <div style="background:var(--surf);border-radius:var(--r);box-shadow:0 4px 24px rgba(30,16,8,.18);padding:24px;width:100%;max-width:380px;border:1px solid var(--bdr);">
     <div style="text-align:center;margin-bottom:20px">
-      <div style="font-size:52px">🐄</div>
-      <h1 style="font-size:22px;font-weight:800;color:var(--tx);margin:6px 0 2px">PashuFeed Pro</h1>
-      <p style="font-size:12px;color:var(--tx3)">Cattle Feed Shop Manager</p>
+      <div style="font-size:44px">🌾</div>
+      <h1 style="font-size:22px;font-weight:800;color:var(--tx);margin:6px 0 2px">BADRI TRADERS</h1>
+      <p style="font-size:12px;color:var(--tx3)">Owner Login — Venkys Cattle Feed</p>
     </div>
     <div style="display:flex;gap:6px;margin-bottom:16px">
       <button class="stab on" id="tab-login" onclick="setAuthMode('login',this)" style="flex:1;text-align:center">Sign In</button>
@@ -267,22 +304,24 @@ input,select,textarea{font-family:var(--F);outline:none;font-size:14px;}
     </div>
     <div class="fg"><label>Email *</label><input type="email" id="auth-email" placeholder="your@email.com" onkeydown="if(event.key==='Enter')doAuth()"></div>
     <div class="fg"><label>Password *</label><input type="password" id="auth-pass" placeholder="Password (min 6 chars)" onkeydown="if(event.key==='Enter')doAuth()"></div>
+    <div class="fg" id="signup-code-wrap" style="display:none"><label>Owner Signup Code *</label><input type="text" id="auth-code" placeholder="Secret code" onkeydown="if(event.key==='Enter')doAuth()"></div>
     <button class="btn btn-p btn-full" id="auth-btn" onclick="doAuth()">Sign In</button>
     <div id="auth-err" style="margin-top:10px;font-size:12px;color:var(--red);text-align:center;min-height:18px"></div>
+    <div style="text-align:center;margin-top:12px"><a href="/" style="font-size:12px;color:var(--tx3);text-decoration:none">← Back to store</a></div>
   </div>
 </div>
 
 <!-- ── LOADING OVERLAY ── -->
 <div id="loading-screen" style="position:fixed;inset:0;z-index:998;background:rgba(246,240,230,.94);display:none;align-items:center;justify-content:center;flex-direction:column">
-  <div style="font-size:52px">🐄</div>
+  <div style="font-size:52px">🌾</div>
   <p style="font-size:14px;font-weight:700;color:var(--tx2);margin-top:12px">Loading your data…</p>
 </div>
 
 <!-- HEADER -->
 <header class="hdr">
   <div class="hdr-brand">
-    <span class="ico">🐄</span>
-    <div><div class="nm">PashuFeed</div><div class="sub">Pro Manager</div></div>
+    <span class="ico">🌾</span>
+    <div><div class="nm">BADRI TRADERS</div><div class="sub">Owner Dashboard</div></div>
   </div>
   <div style="display:flex;align-items:center;gap:8px">
     <div class="hdr-date" id="hdrDate"></div>
@@ -408,7 +447,7 @@ input,select,textarea{font-family:var(--F);outline:none;font-size:14px;}
     <div class="ctitle">📋 Products &amp; Prices</div>
     <div style="overflow-x:auto;">
       <table class="ptable" id="rate-table">
-        <thead><tr><th>Product</th><th>Pack</th><th>Retailer ₹</th><th>Dealer ₹</th><th></th></tr></thead>
+        <thead><tr><th>Product</th><th>Pack</th><th style="color:var(--grn)">Cost ₹</th><th>Retailer ₹</th><th style="color:var(--blu)">Dealer ₹</th><th>Margin</th><th>Web</th><th></th></tr></thead>
         <tbody id="rate-tbody"></tbody>
       </table>
     </div>
@@ -462,7 +501,7 @@ input,select,textarea{font-family:var(--F);outline:none;font-size:14px;}
 <!-- New Sale Modal -->
 <div class="mover" id="m-sale"><div class="modal">
   <div class="mhdr"><div class="mtitle">New Bill</div><button class="mcls" onclick="closeM('m-sale')">✕</button></div>
-  <div class="fg"><label>Customer *</label><select id="sm-cust" onchange="onCustChange()"><option value="">-- Select Customer --</option></select></div>
+  <div class="fg"><label>Customer <span style="font-weight:400;color:var(--tx3)">(optional — leave blank for Walk-in / Cash)</span></label><select id="sm-cust" onchange="onCustChange()"><option value="">Walk-in / Cash</option></select></div>
   <div class="fg"><label>Date *</label><input type="date" id="sm-date"></div>
   <div style="margin-bottom:10px">
     <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:7px">
@@ -522,8 +561,13 @@ input,select,textarea{font-family:var(--F);outline:none;font-size:14px;}
   <div class="fg"><label>Product Name *</label><input type="text" id="rm-name" placeholder="e.g. Milk Booster"></div>
   <div class="fg"><label>Pack Size (kg) *</label><input type="number" id="rm-pack" placeholder="50" inputmode="numeric"></div>
   <div class="fr">
+    <div class="fg"><label style="color:var(--grn)">Cost Price/Bag (₹)</label><input type="number" id="rm-cost-price" placeholder="0" inputmode="numeric" style="border-color:#4A9060;background:#F0FAF3"></div>
     <div class="fg"><label>Retailer Price/Bag (₹) *</label><input type="number" id="rm-retailer-price" placeholder="1200" inputmode="numeric"></div>
-    <div class="fg"><label>Dealer Price/Bag (₹) *</label><input type="number" id="rm-dealer-price" placeholder="1150" inputmode="numeric"></div>
+  </div>
+  <div class="fg"><label style="color:var(--blu)">Dealer Price/Bag (₹)</label><input type="number" id="rm-dealer-price" placeholder="1150" inputmode="numeric"></div>
+  <div class="fg" style="display:flex;align-items:center;gap:8px;margin-bottom:14px">
+    <input type="checkbox" id="rm-public" style="width:16px;height:16px;accent-color:var(--acc)">
+    <label for="rm-public" style="font-size:12px;color:var(--tx2);cursor:pointer">Show on website (landing page)</label>
   </div>
   <button class="btn btn-p btn-full" onclick="addRate()">✅ Add Product</button>
 </div></div>
@@ -649,6 +693,7 @@ function setAuthMode(mode, btn) {
   document.querySelectorAll('#auth-screen .stab').forEach(b => b.classList.remove('on'));
   btn.classList.add('on');
   document.getElementById('auth-btn').textContent = mode === 'login' ? 'Sign In' : 'Sign Up';
+  document.getElementById('signup-code-wrap').style.display = mode === 'signup' ? 'block' : 'none';
 }
 async function doAuth() {
   const email = document.getElementById('auth-email').value.trim();
@@ -656,10 +701,16 @@ async function doAuth() {
   const errEl = document.getElementById('auth-err');
   errEl.textContent = '';
   if (!email || !pass) { errEl.textContent = 'Email and password required'; return; }
+  const payload = { email, password: pass };
+  if (authMode === 'signup') {
+    const code = document.getElementById('auth-code').value.trim();
+    if (!code) { errEl.textContent = 'Enter the owner signup code'; return; }
+    payload.signupCode = code;
+  }
   const btn = document.getElementById('auth-btn');
   btn.disabled = true; btn.textContent = '…';
   try {
-    const res = await api.postNoAuth('/auth/' + authMode, { email, password: pass });
+    const res = await api.postNoAuth('/auth/' + authMode, payload);
     if (res.message) { errEl.style.color = 'var(--grn)'; errEl.textContent = res.message; btn.disabled = false; btn.textContent = 'Sign Up'; return; }
     Auth.setToken(res.token);
     hideAuth();
@@ -969,7 +1020,7 @@ function getFilteredSales() {
 function openNewSale() {
   lineCount=0; document.getElementById('line-items').innerHTML='';
   const custs=DB.get('customers');
-  document.getElementById('sm-cust').innerHTML='<option value="">-- Select Customer --</option>'+
+  document.getElementById('sm-cust').innerHTML='<option value="">Walk-in / Cash</option>'+
     custs.map(c=>`<option value="${c.id}">${esc(c.name)} (${c.type==='Shop Dealer'?'Dealer':'Direct'})</option>`).join('');
   document.getElementById('sm-date').value=today();
   document.getElementById('sm-total').textContent='₹0';
@@ -1052,7 +1103,7 @@ function calcTotal() {
 }
 async function saveSale() {
   const custId=document.getElementById('sm-cust').value, date=document.getElementById('sm-date').value;
-  if(!custId){toast('⚠️ Select a customer');return;} if(!date){toast('⚠️ Select date');return;}
+  if(!date){toast('⚠️ Select date');return;}
   const items=[];
   document.querySelectorAll('#line-items .line-item').forEach(li=>{
     const idx=li.id.split('-')[1], sel=document.getElementById('lip-'+idx);
@@ -1064,17 +1115,17 @@ async function saveSale() {
     items.push({rateId:rate.id, name:rate.name, packSize:rate.packSize, bags, pricePerBag:price, amount:price*bags});
   });
   if(!items.length){toast('⚠️ Add at least one item with bags > 0');return;}
-  const cust=DB.get('customers').find(c=>c.id===custId);
+  const cust=custId?DB.get('customers').find(c=>c.id===custId):null;
   const paidAmt=parseFloat(document.getElementById('sm-paid').value)||0;
   try {
     const sale=await api.post('/sales',{
-      customerId:custId, customerName:cust?.name||'', customerType:cust?.type||'',
+      customerId:custId||null, customerName:cust?.name||'Walk-in / Cash', customerType:cust?.type||'',
       items, total:items.reduce((a,i)=>a+i.amount,0), paidAmount:paidAmt,
       payStatus:document.getElementById('sm-pstat').value,
       notes:document.getElementById('sm-notes').value.trim(), date
     });
     State.sales.push(sale);
-    State.stock=await api.get('/stock');  // refresh after server-side deduction
+    State.stock=await api.get('/stock');
     closeM('m-sale'); renderSales(); refreshDash(); toast('✅ '+sale.billNo+' saved!');
   } catch(e) { toast('❌ '+e.message); }
 }
@@ -1127,31 +1178,130 @@ function renderSales() {
     </div>`;
   }).join('');
 }
+function amountInWords(n) {
+  const ones=['','One','Two','Three','Four','Five','Six','Seven','Eight','Nine',
+    'Ten','Eleven','Twelve','Thirteen','Fourteen','Fifteen','Sixteen','Seventeen','Eighteen','Nineteen'];
+  const tens=['','','Twenty','Thirty','Forty','Fifty','Sixty','Seventy','Eighty','Ninety'];
+  function sub(num) {
+    if(num===0) return '';
+    if(num<20) return ones[num]+' ';
+    if(num<100) return tens[Math.floor(num/10)]+' '+(num%10?ones[num%10]+' ':'');
+    return ones[Math.floor(num/100)]+' Hundred '+(num%100?sub(num%100):'');
+  }
+  n=Math.round(Number(n)||0);
+  if(n===0) return 'Zero Rupees Only';
+  let w='';
+  if(n>=10000000){w+=sub(Math.floor(n/10000000))+'Crore '; n%=10000000;}
+  if(n>=100000) {w+=sub(Math.floor(n/100000))+'Lakh '; n%=100000;}
+  if(n>=1000)   {w+=sub(Math.floor(n/1000))+'Thousand '; n%=1000;}
+  w+=sub(n);
+  return w.trim()+' Rupees Only';
+}
+
 function viewBill(id) {
   const s=DB.get('sales').find(x=>x.id===id); if(!s) return;
   const bmap={paid:'bd-paid',unpaid:'bd-unpaid',partial:'bd-part'};
-  const bdCls=s.customerType==='Shop Dealer'?'bd-deal':'bd-dir';
   const owed=Number(s.total||0)-Number(s.paidAmount||0);
+  const invoiceNum = s.billNo||'';
+  // Look up customer details for address/phone
+  const cust = s.customerId ? DB.get('customers').find(c=>c.id===s.customerId) : null;
+  const custPhone   = cust?.phone||'';
+  const custAddress = cust?.address||'';
+  // Blank rows to fill the table to a reasonable height for printing
+  const itemRows=(s.items||[]).map((it,i)=>`
+    <tr>
+      <td>${i+1}</td>
+      <td style="text-align:left">${esc(it.name)} ${it.packSize?'('+it.packSize+'kg)':''}</td>
+      <td></td>
+      <td>${it.bags}</td>
+      <td style="text-align:right">₹${fmt(it.pricePerBag)}</td>
+      <td style="text-align:right;font-weight:700">₹${fmt(it.amount)}</td>
+    </tr>`).join('');
+  // add blank padding rows
+  const blankCount=Math.max(0,8-(s.items||[]).length);
+  const blankRows=Array(blankCount).fill('<tr><td>&nbsp;</td><td></td><td></td><td></td><td></td><td></td></tr>').join('');
+
   document.getElementById('m-bill-body').innerHTML=`
     <div class="bill-wrap" id="bpc">
-      <div class="bill-top"><div style="font-size:24px">🐄</div><h2>PashuFeed Store</h2><p>Cattle Feed Supplier</p><div class="bnum">${s.billNo}</div></div>
-      <div class="binfo">
-        <div><div class="bil">Customer</div><div style="font-weight:700;font-size:13px">${esc(s.customerName)}</div></div>
-        <div><div class="bil">Type</div><span class="bdg ${bdCls}">${s.customerType==='Shop Dealer'?'Dealer':'Direct'}</span></div>
-        <div><div class="bil">Date</div>${fmtD(s.date)}</div>
-        <div><div class="bil">Status</div><span class="bdg ${bmap[s.payStatus]||'bd-unpaid'}">${s.payStatus}</span></div>
+      <!-- Header bar -->
+      <div class="bill-hbar">
+        <span class="gstin">GSTIN: 09LEZPK0675P1Z3</span>
+        <span class="gst-badge">GST INVOICE</span>
+        <span class="mob">Mob.: 70800 06857</span>
       </div>
+      <!-- Business name -->
+      <div class="bill-biz">
+        <h2>BADRI TRADERS</h2>
+        <p>JAMUI, CHUNAR, MIRZAPUR, UTTAR PRADESH</p>
+      </div>
+      <!-- Customer info + Invoice No -->
+      <div class="bill-cust-row">
+        <div class="bill-cust">
+          <div class="bcl">Name</div>
+          <div class="bcv">${esc(s.customerName&&s.customerName!=='Walk-in / Cash'?s.customerName:'')}</div>
+          <div class="bcl">Address</div>
+          <div class="bcv">${esc(custAddress)}</div>
+          <div class="bcl">Mob. No.</div>
+          <div class="bcv">${esc(custPhone)}</div>
+          <div class="bcl">GSTIN / AADHAR No.</div>
+          <div class="bcv">&nbsp;</div>
+        </div>
+        <div class="bill-inv">
+          <div class="bill-inv-no">
+            <div class="ilab">Invoice No.</div>
+            <div class="ival">${String(invoiceNum).replace(/[^0-9]/g,'')||invoiceNum}</div>
+          </div>
+          <div class="bill-inv-date">
+            <div class="ilab">Date</div>
+            <div class="ival">${fmtD(s.date)}</div>
+          </div>
+        </div>
+      </div>
+      <!-- Items table -->
       <table class="btable">
-        <thead><tr><th>#</th><th>Product</th><th>Pack</th><th>Bags</th><th>Rate/Bag</th><th>Amount</th></tr></thead>
-        <tbody>
-          ${(s.items||[]).map((it,i)=>`<tr><td>${i+1}</td><td>${esc(it.name)}</td><td style="color:var(--tx3)">${it.packSize}kg</td><td style="font-weight:700;text-align:center">${it.bags}</td><td>${fmt(it.pricePerBag)}</td><td style="font-weight:700">${fmt(it.amount)}</td></tr>`).join('')}
-          <tr class="tot"><td colspan="5" style="text-align:right">TOTAL</td><td>${fmt(s.total)}</td></tr>
-          <tr><td colspan="5" style="text-align:right;color:var(--grn)">PAID</td><td style="color:var(--grn);font-weight:700">${fmt(s.paidAmount)}</td></tr>
-          ${owed>0?`<tr><td colspan="5" style="text-align:right;color:var(--red)">BALANCE DUE</td><td style="color:var(--red);font-weight:700">${fmt(owed)}</td></tr>`:''}
-        </tbody>
+        <thead>
+          <tr>
+            <th style="width:32px">Sl.No.</th>
+            <th>Description of Goods</th>
+            <th style="width:52px">HSN<br>Code</th>
+            <th style="width:40px">Qty.</th>
+            <th style="width:70px">Rate</th>
+            <th style="width:80px">Amount</th>
+          </tr>
+        </thead>
+        <tbody>${itemRows}${blankRows}</tbody>
       </table>
-      ${s.notes?`<div style="font-size:11.5px;background:var(--surf2);padding:7px 9px;border-radius:6px;margin-bottom:8px">📝 ${esc(s.notes)}</div>`:''}
-      <div class="bfoot">Thank you for your business! 🙏</div>
+      <!-- Amount in words + Total -->
+      <div class="bill-total-row">
+        <div class="bill-words">
+          <div class="wlab">Amount in words:</div>
+          <div class="wval">${amountInWords(s.total)}</div>
+          ${owed>0?`<div style="margin-top:4px"><span class="wlab">Balance Due: </span><span class="wval" style="color:#B00">${amountInWords(owed)}</span></div>`:''}
+        </div>
+        <div class="bill-total-cell" style="border-left:1px solid #222;">
+          <div class="tlab">Total Amount</div>
+          <div class="tval">₹${fmt(s.total)}</div>
+          ${Number(s.paidAmount)>0?`<div style="font-size:10px;color:#1A6E38;font-weight:700;margin-top:3px">Paid: ₹${fmt(s.paidAmount)}</div>`:''}
+          ${owed>0?`<div style="font-size:10px;color:#B00;font-weight:700">Due: ₹${fmt(owed)}</div>`:''}
+        </div>
+      </div>
+      <!-- Footer -->
+      <div class="bill-foot">
+        <div class="ft-tc">
+          <strong>E.&amp;O.E.</strong><br>
+          <strong>Terms &amp; Conditions:-</strong><br>
+          Subject to Mirzapur Jurisdiction only.<br>
+          Goods once Sold not be taken back or exchanged.
+          ${s.notes?`<br><em>Note: ${esc(s.notes)}</em>`:''}
+        </div>
+        <div class="ft-cert">
+          Certified that the particulars given<br>above are true and correct.
+        </div>
+        <div class="ft-sign">
+          <div style="font-size:10px;font-weight:700">For.: BADRI TRADERS</div>
+          <div style="font-size:10px;color:#555;margin-top:24px">Authorised Signatory</div>
+        </div>
+      </div>
     </div>`;
   document.getElementById('bill-del-btn').onclick = async () => {
     if(!confirm('Delete this bill?')) return;
@@ -1256,15 +1406,21 @@ function renderStock() {
 async function addRate() {
   const name=document.getElementById('rm-name').value.trim();
   const pack=parseFloat(document.getElementById('rm-pack').value)||0;
+  const costPrice=parseFloat(document.getElementById('rm-cost-price').value)||0;
   const retailerPrice=parseFloat(document.getElementById('rm-retailer-price').value)||0;
   const dealerPrice=parseFloat(document.getElementById('rm-dealer-price').value)||0;
+  const isPublic=document.getElementById('rm-public').checked;
   if(!name){toast('⚠️ Product name required');return;} if(pack<=0){toast('⚠️ Enter pack size');return;} if(retailerPrice<=0){toast('⚠️ Enter retailer price');return;}
   const dp=dealerPrice>0?dealerPrice:retailerPrice;
   const existing=State.rates.find(r=>r.name.toLowerCase()===name.toLowerCase()&&r.packSize===pack);
   try {
-    const saved=existing?await api.put('/rates/'+existing.id,{name,packSize:pack,retailerPrice,dealerPrice:dp}):await api.post('/rates',{name,packSize:pack,retailerPrice,dealerPrice:dp});
+    const saved=existing
+      ?await api.put('/rates/'+existing.id,{name,packSize:pack,costPrice,retailerPrice,dealerPrice:dp,isPublic})
+      :await api.post('/rates',{name,packSize:pack,costPrice,retailerPrice,dealerPrice:dp,isPublic});
     if(existing){const i=State.rates.findIndex(r=>r.id===existing.id);State.rates[i]=saved;}else State.rates.push(saved);
-    closeM('m-addrate'); ['rm-name','rm-pack','rm-retailer-price','rm-dealer-price'].forEach(id=>document.getElementById(id).value='');
+    closeM('m-addrate');
+    ['rm-name','rm-pack','rm-cost-price','rm-retailer-price','rm-dealer-price'].forEach(id=>document.getElementById(id).value='');
+    document.getElementById('rm-public').checked=false;
     renderRates(); toast('✅ Product added!');
   } catch(e) { toast('❌ '+e.message); }
 }
@@ -1272,9 +1428,10 @@ async function saveAllRates() {
   const updates=[];
   document.querySelectorAll('#rate-tbody tr').forEach(row=>{
     const id=row.dataset.id;
-    const rInp=row.querySelector('.retailer-price-inp'), dInp=row.querySelector('.dealer-price-inp');
+    const cInp=row.querySelector('.cost-inp'), rInp=row.querySelector('.retail-inp'), dInp=row.querySelector('.dealer-inp');
+    const pubChk=row.querySelector('.pub-chk');
     if(!id||!rInp) return;
-    updates.push({id, retailerPrice:parseFloat(rInp.value)||0, dealerPrice:parseFloat(dInp?.value)||0});
+    updates.push({id, costPrice:parseFloat(cInp?.value)||0, retailerPrice:parseFloat(rInp.value)||0, dealerPrice:parseFloat(dInp?.value)||0, isPublic:pubChk?.checked??false});
   });
   if(!updates.length) return;
   try {
@@ -1288,17 +1445,40 @@ async function delRate(id) {
   try { await api.del('/rates/'+id); State.rates=State.rates.filter(r=>r.id!==id); renderRates(); toast('🗑️ Deleted'); }
   catch(e) { toast('❌ '+e.message); }
 }
+function marginBadge(selling, cost) {
+  if(!cost||cost<=0) return '<span style="color:var(--tx4);font-size:10px">—</span>';
+  const pct=Math.round(((selling-cost)/cost)*100);
+  const color=pct>=0?'var(--grn)':'var(--red)';
+  const bg=pct>=0?'var(--grnbg)':'var(--redbg)';
+  return `<span style="background:${bg};color:${color};border-radius:4px;padding:1px 5px;font-size:10px;font-weight:700">${pct>=0?'+':''}${pct}%</span>`;
+}
 function renderRates() {
   const rates=DB.get('rates'), tbody=document.getElementById('rate-tbody');
-  if(!rates.length){tbody.innerHTML=`<tr><td colspan="5" style="text-align:center;padding:16px;color:var(--tx3)">No products yet</td></tr>`;return;}
-  tbody.innerHTML=rates.map((r,i)=>`
-    <tr data-id="${r.id}">
+  if(!rates.length){tbody.innerHTML=`<tr><td colspan="8" style="text-align:center;padding:16px;color:var(--tx3)">No products yet</td></tr>`;return;}
+  tbody.innerHTML=rates.map((r,i)=>{
+    const cp=r.costPrice??0, rp=r.retailerPrice??r.pricePerBag??0, dp=r.dealerPrice??rp;
+    return `<tr data-id="${r.id}">
       <td style="font-weight:600;font-size:12.5px">${i+1}. ${esc(r.name)}</td>
       <td style="text-align:center;color:var(--tx3);font-size:12px">${r.packSize} kg</td>
-      <td><input type="number" class="retailer-price-inp" value="${r.retailerPrice??r.pricePerBag??0}" inputmode="numeric" style="width:80px;padding:5px 7px;border-radius:6px;border:1.5px solid var(--bdr);background:var(--bg);font-size:13px;font-weight:700;text-align:right"></td>
-      <td><input type="number" class="dealer-price-inp" value="${r.dealerPrice??r.pricePerBag??0}" inputmode="numeric" style="width:80px;padding:5px 7px;border-radius:6px;border:1.5px solid var(--acc2);background:var(--bg);font-size:13px;font-weight:700;text-align:right"></td>
+      <td><input type="number" class="cost-inp" value="${cp}" inputmode="numeric" style="width:72px;padding:5px 6px;border-radius:6px;border:1.5px solid #4A9060;background:#F0FAF3;font-size:12px;font-weight:700;text-align:right" oninput="updateMargin(this)"></td>
+      <td><input type="number" class="retail-inp" value="${rp}" inputmode="numeric" style="width:72px;padding:5px 6px;border-radius:6px;border:1.5px solid var(--bdr);background:var(--bg);font-size:12px;font-weight:700;text-align:right" oninput="updateMargin(this)"></td>
+      <td><input type="number" class="dealer-inp" value="${dp}" inputmode="numeric" style="width:72px;padding:5px 6px;border-radius:6px;border:1.5px solid #3060A0;background:#F0F4FF;font-size:12px;font-weight:700;text-align:right" oninput="updateMargin(this)"></td>
+      <td class="margin-cell" style="white-space:nowrap;font-size:10px;line-height:1.7">
+        <div>R: ${marginBadge(rp,cp)}</div>
+        <div>D: ${marginBadge(dp,cp)}</div>
+      </td>
+      <td style="text-align:center"><input type="checkbox" class="pub-chk" title="Show on website" ${r.isPublic?'checked':''} style="width:14px;height:14px;accent-color:var(--acc);cursor:pointer"></td>
       <td style="text-align:center"><button onclick="delRate('${r.id}')" style="background:var(--redbg);color:var(--red);border:none;border-radius:6px;width:26px;height:26px;font-size:14px;cursor:pointer">🗑️</button></td>
-    </tr>`).join('');
+    </tr>`;
+  }).join('');
+}
+function updateMargin(inp) {
+  const row=inp.closest('tr'); if(!row) return;
+  const cp=parseFloat(row.querySelector('.cost-inp')?.value)||0;
+  const rp=parseFloat(row.querySelector('.retail-inp')?.value)||0;
+  const dp=parseFloat(row.querySelector('.dealer-inp')?.value)||0;
+  const cell=row.querySelector('.margin-cell'); if(!cell) return;
+  cell.innerHTML=`<div>R: ${marginBadge(rp,cp)}</div><div>D: ${marginBadge(dp,cp)}</div>`;
 }
 
 /* ── CSV Rate Upload ── */
@@ -1309,20 +1489,21 @@ async function handleRateUpload(e) {
   else { area.innerHTML=`<div class="alert warn" style="margin-top:8px"><span class="ai">⚠️</span>Only CSV files are supported.</div>`; }
   e.target.value='';
 }
+// CSV import: price column → costPrice only
+// Existing rates: only costPrice updated (retailer/dealer unchanged)
+// New rates: costPrice = retailerPrice = importedPrice, dealerPrice = 0
 function parseCSVRates(text, area) {
   const lines=text.trim().split('\n'); if(lines.length<2){area.innerHTML=`<div class="alert danger" style="margin-top:8px"><span class="ai">❌</span>CSV needs a header row</div>`;return;}
   const h=lines[0].split(',').map(x=>x.trim().toLowerCase());
   const ni=h.findIndex(x=>x.includes('product')||x.includes('name'));
   const pki=h.findIndex(x=>x.includes('pack')||x.includes('size')||x.includes('kg'));
-  const rpi=h.findIndex(x=>x.includes('retailer'));
-  const dpi=h.findIndex(x=>x.includes('dealer'));
-  const pri=rpi>=0?rpi:h.findIndex(x=>x.includes('price')||x.includes('bag')||x.includes('rate'));
+  // detect cost price column; fall back to any price column
+  const pri=h.findIndex(x=>x.includes('cost'))||h.findIndex(x=>x.includes('price')||x.includes('bag')||x.includes('rate'));
   const parsed=lines.slice(1).map(l=>{
     const c=l.split(',').map(x=>x.trim().replace(/"/g,''));
     const name=c[ni>=0?ni:0]; if(!name) return null;
-    const retailerPrice=parseFloat(c[pri>=0?pri:2])||0;
-    const dealerPrice=dpi>=0?(parseFloat(c[dpi])||retailerPrice):retailerPrice;
-    return{name, packSize:parseFloat(c[pki>=0?pki:1])||50, retailerPrice, dealerPrice};
+    const costPrice=parseFloat(c[pri>=0?pri:2])||0;
+    return{name, packSize:parseFloat(c[pki>=0?pki:1])||50, costPrice};
   }).filter(Boolean);
   applyRates(parsed, area);
 }
@@ -1333,12 +1514,19 @@ async function applyRates(parsed, area) {
     if(!p.name) continue;
     const existing=State.rates.find(r=>r.name.toLowerCase()===p.name.toLowerCase()&&r.packSize===p.packSize);
     try {
-      const saved=existing?await api.put('/rates/'+existing.id,p):await api.post('/rates',p);
-      if(existing){const i=State.rates.findIndex(r=>r.id===existing.id);State.rates[i]=saved;updated++;}else{State.rates.push(saved);added++;}
+      if(existing) {
+        // Only update costPrice — retailer/dealer prices untouched
+        const saved=await api.put('/rates/'+existing.id,{costPrice:p.costPrice});
+        const i=State.rates.findIndex(r=>r.id===existing.id); State.rates[i]=saved; updated++;
+      } else {
+        // New product: costPrice = retailerPrice = imported, dealerPrice = 0
+        const saved=await api.post('/rates',{name:p.name,packSize:p.packSize,costPrice:p.costPrice,retailerPrice:p.costPrice,dealerPrice:0});
+        State.rates.push(saved); added++;
+      }
     } catch(_) {}
   }
   renderRates();
-  area.innerHTML=`<div class="alert ok" style="margin-top:8px"><span class="ai">✅</span><div>Imported <b>${parsed.length} products</b> — ${added} added, ${updated} updated</div></div>`;
+  area.innerHTML=`<div class="alert ok" style="margin-top:8px"><span class="ai">✅</span><div>Imported <b>${parsed.length} products</b> — ${added} added, ${updated} cost prices updated<br><span style="font-size:11px;color:var(--tx3)">Retailer/dealer prices unchanged for existing products</span></div></div>`;
 }
 
 /* ═══════════════════════════════════════
@@ -1444,7 +1632,7 @@ function exportData() {
   const data={version:'4.0', exportedAt:new Date().toISOString(), customers:State.customers, sales:State.sales, stock:State.stock, payments:State.payments, rates:State.rates, targets:State.targets};
   const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});
   const url=URL.createObjectURL(blob), a=document.createElement('a');
-  a.href=url; a.download=`pashufeed_${today()}.json`; a.click();
+  a.href=url; a.download=`badri_traders_${today()}.json`; a.click();
   URL.revokeObjectURL(url); toast('✅ Data exported!');
 }
 

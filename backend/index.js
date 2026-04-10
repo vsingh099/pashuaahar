@@ -1,20 +1,33 @@
 'use strict';
 require('dotenv').config();
-const express = require('express');
-const cors    = require('cors');
-const helmet  = require('helmet');
-const path    = require('path');
+const express   = require('express');
+const cors      = require('cors');
+const helmet    = require('helmet');
+const path      = require('path');
+const nodemailer = require('nodemailer');
 
 const authMiddleware = require('./auth');
+const { toCamel } = require('./transform');
 
 const app = express();
 
 // ── Security & parsing ──
-app.use(helmet({ contentSecurityPolicy: false })); // CSP disabled for single-file HTML with inline scripts
+app.use(helmet({ contentSecurityPolicy: false }));
 app.use(cors({ origin: process.env.CLIENT_ORIGIN || '*', credentials: true }));
 app.use(express.json({ limit: '2mb' }));
 
-// ── Auth routes (no JWT needed — they return the JWT) ──
+// ── Nodemailer transporter ──
+const mailer = nodemailer.createTransport({
+  host:   process.env.SMTP_HOST || 'smtp.gmail.com',
+  port:   parseInt(process.env.SMTP_PORT || '587'),
+  secure: process.env.SMTP_SECURE === 'true',
+  auth: {
+    user: process.env.SMTP_USER,
+    pass: process.env.SMTP_PASS
+  }
+});
+
+// ── Auth routes ──
 app.post('/api/auth/login', async (req, res) => {
   const supabase = require('./db');
   const { email, password } = req.body;
@@ -24,18 +37,106 @@ app.post('/api/auth/login', async (req, res) => {
   res.json({ token: data.session.access_token, user: { id: data.user.id, email: data.user.email } });
 });
 
+// Owner-only signup — guarded by OWNER_SIGNUP_CODE
 app.post('/api/auth/signup', async (req, res) => {
   const supabase = require('./db');
-  const { email, password } = req.body;
+  const { email, password, signupCode } = req.body;
   if (!email || !password) return res.status(400).json({ error: 'email and password required' });
+
+  const OWNER_CODE = process.env.OWNER_SIGNUP_CODE || 'BADRI2024';
+  if (!signupCode || signupCode !== OWNER_CODE) {
+    return res.status(403).json({ error: 'Invalid owner signup code' });
+  }
+
   const { data, error } = await supabase.auth.signUp({ email, password });
   if (error) return res.status(400).json({ error: error.message });
-  // On signup, Supabase may require email confirmation depending on project settings.
-  // If email confirmation is disabled, session is available immediately.
   if (!data.session) {
     return res.json({ message: 'Check your email to confirm your account before signing in.' });
   }
   res.json({ token: data.session.access_token, user: { id: data.user.id, email: data.user.email } });
+});
+
+// ── Public: product list (landing page) ──
+app.get('/api/public/rates', async (req, res) => {
+  const supabase = require('./db');
+  const ownerId = process.env.OWNER_USER_ID;
+  if (!ownerId) return res.json([]);
+  const { data, error } = await supabase
+    .from('rates')
+    .select('id, name, pack_size, retailer_price, dealer_price')
+    .eq('user_id', ownerId)
+    .eq('is_public', true)
+    .order('name');
+  if (error) return res.status(500).json({ error: error.message });
+  res.json(data.map(toCamel));
+});
+
+// ── Public: submit order (landing page) ──
+app.post('/api/public/order', async (req, res) => {
+  const { name, phone, address, product, quantity, note } = req.body;
+  if (!name || !phone || !product || !quantity) {
+    return res.status(400).json({ error: 'name, phone, product and quantity are required' });
+  }
+
+  const ownerEmails = (process.env.OWNER_EMAIL || 'vsmita099@gmail.com,viveksinghjpm6857@gmail.com')
+    .split(',').map(e => e.trim()).filter(Boolean);
+
+  const orderTime = new Date().toLocaleString('en-IN', {
+    timeZone: 'Asia/Kolkata', dateStyle: 'medium', timeStyle: 'short'
+  });
+
+  const html = `
+    <div style="font-family:sans-serif;max-width:520px;margin:0 auto;border:1px solid #ddd;border-radius:8px;overflow:hidden">
+      <div style="background:linear-gradient(135deg,#A86000,#D08820);padding:20px;text-align:center">
+        <h2 style="color:#fff;margin:0;font-size:22px">🛒 New Order — BADRI TRADERS</h2>
+        <p style="color:rgba(255,255,255,.85);margin:6px 0 0;font-size:13px">${orderTime}</p>
+      </div>
+      <div style="padding:20px;background:#fff">
+        <table style="width:100%;border-collapse:collapse;font-size:14px">
+          <tr style="border-bottom:1px solid #eee">
+            <td style="padding:10px 8px;color:#888;width:120px">Customer</td>
+            <td style="padding:10px 8px;font-weight:700">${name}</td>
+          </tr>
+          <tr style="border-bottom:1px solid #eee">
+            <td style="padding:10px 8px;color:#888">Phone</td>
+            <td style="padding:10px 8px;font-weight:700"><a href="tel:${phone}">${phone}</a></td>
+          </tr>
+          <tr style="border-bottom:1px solid #eee">
+            <td style="padding:10px 8px;color:#888">Address</td>
+            <td style="padding:10px 8px">${address || '—'}</td>
+          </tr>
+          <tr style="border-bottom:1px solid #eee">
+            <td style="padding:10px 8px;color:#888">Product</td>
+            <td style="padding:10px 8px;font-weight:700;color:#A86000">${product}</td>
+          </tr>
+          <tr style="border-bottom:1px solid #eee">
+            <td style="padding:10px 8px;color:#888">Quantity</td>
+            <td style="padding:10px 8px;font-weight:700">${quantity} bags</td>
+          </tr>
+          ${note ? `<tr><td style="padding:10px 8px;color:#888">Note</td><td style="padding:10px 8px">${note}</td></tr>` : ''}
+        </table>
+      </div>
+      <div style="background:#FDF2DC;padding:14px 20px;text-align:center;font-size:12px;color:#9A5E0A">
+        Reply to this email or WhatsApp <strong>7080006857</strong> to confirm delivery.
+      </div>
+    </div>`;
+
+  if (process.env.SMTP_USER && process.env.SMTP_PASS) {
+    try {
+      await mailer.sendMail({
+        from: `"BADRI TRADERS Orders" <${process.env.SMTP_USER}>`,
+        to:   ownerEmails.join(','),
+        subject: `New Order from ${name} — ${product} × ${quantity} bags`,
+        html,
+        text: `New Order\n\nCustomer: ${name}\nPhone: ${phone}\nAddress: ${address||'—'}\nProduct: ${product}\nQuantity: ${quantity} bags\nNote: ${note||'—'}\nTime: ${orderTime}`
+      });
+    } catch (err) {
+      console.error('Email send error:', err.message);
+    }
+  } else {
+    console.log(`📦 NEW ORDER — ${name} | ${phone} | ${product} × ${quantity}`);
+  }
+  res.json({ success: true, message: 'Order placed! We will contact you soon.' });
 });
 
 // ── Protected API routes ──
@@ -46,10 +147,22 @@ app.use('/api/rates',     authMiddleware, require('./routes/rates'));
 app.use('/api/payments',  authMiddleware, require('./routes/payments'));
 app.use('/api/targets',   authMiddleware, require('./routes/targets'));
 
-// ── Serve frontend ──
-app.use(express.static(path.join(__dirname, '..', 'frontend')));
-app.get('*', (req, res) => {
+// ── Page routes ──
+// Public landing page at /
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, '..', 'frontend', 'landing.html'));
+});
+// Owner dashboard at /app
+app.get('/app', (req, res) => {
   res.sendFile(path.join(__dirname, '..', 'frontend', 'index.html'));
+});
+
+// ── Static assets ──
+app.use(express.static(path.join(__dirname, '..', 'frontend')));
+
+// ── Fallback ──
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '..', 'frontend', 'landing.html'));
 });
 
 // ── Error handler ──
@@ -59,4 +172,4 @@ app.use((err, req, res, _next) => {
 });
 
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => console.log(`PashuFeed Pro running at http://localhost:${PORT}`));
+app.listen(PORT, () => console.log(`BADRI TRADERS running at http://localhost:${PORT}`));
